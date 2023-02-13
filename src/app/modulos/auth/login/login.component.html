@@ -1,0 +1,33 @@
+<div>
+    <div class="container">
+        <form (ngSubmit)="login()" autocomplete="off" [formGroup]="miFormularioLogin">
+            <h2>Ingresar al sitio</h2>
+            <div class="item">
+                <label for="correo">Correo Electronico</label>
+                <input type="text" name="correo" id="correo" formControlName="correo"
+                    placeholder="Ingrese correo electronico">
+                <span *ngIf="campoLoginEsValido('correo','required')">
+                    Correo electronico es obligatorio
+                </span>
+                <span *ngIf="campoLoginEsValido('correo','email')">
+                    Correo electronico no valido
+                </span>
+            </div>
+            <div class="item">
+                <label for="contrasena">Contraseña</label>
+                <input type="password" name="contrasena" id="contrasena" formControlName="contrasena"
+                    placeholder="Ingrese contraseña">
+                <span *ngIf="campoLoginEsValido('contrasena','required')">
+                    Contraseña es obligatoria
+                </span>
+                <span *ngIf="campoLoginEsValido('contrasena','pattern')">
+                    Contraseña no valida
+                </span>
+            </div>
+            <div class="item">
+                <input type="submit" value="ingresar">
+            </div>
+        </form>
+    </div>
+    <p class="texto">No tienes cuenta? <a href="#">Registrese aqui</a></p>
+</div>
