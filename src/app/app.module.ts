@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutLoginComponent } from './modulos/layout/layout-login/layout-login.component';
 import { LayoutHomeComponent } from './modulos/layout/layout-home/layout-home.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 
@@ -17,11 +19,13 @@ import { LayoutHomeComponent } from './modulos/layout/layout-home/layout-home.co
     LayoutLoginComponent,
     LayoutHomeComponent
 
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
 
 
 

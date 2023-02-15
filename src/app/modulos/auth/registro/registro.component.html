@@ -1,1 +1,83 @@
-<p>registro works!</p>
+<div class="container">
+    <h1>Registrese con nosotros</h1>
+    <h4>Es gratis solo toma un minuto</h4>
+    <form (ngSubmit)="registro()" autocomplete="off" [formGroup]="miFormularioRegistro">
+        <div class="medio-formulario">
+            <div class="item">
+                <label for="nombre">Primer nombre</label>
+                <input type="text" name="nombre" id="nombre" formControlName="nombre" placeholder="Ingrese nombres">
+                <span *ngIf="campoRegistroEsValido('nombre','required')">
+                    Campo nombres es obligatorio
+                </span>
+            </div>
+
+            <div class="item">
+                <label for="tipoDocumento">Tipo documento</label>
+                <select formControlName="tipoDocumento" name="tipoDocumento">
+                    <option *ngFor="let tipoDocumento of documentos" [ngValue]="tipoDocumento">
+                        {{tipoDocumento.descripcion}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="item">
+                <label for="contrasena">Contraseña</label>
+                <input type="text" name="contrasena" id="contrasena" formControlName="contrasena"
+                    placeholder="Ingrese contraseña ">
+                <span *ngIf="campoRegistroEsValido('contrasena','required')">
+                    campo contraseña es obligatorio
+                </span>
+            </div>
+            <div class="item">
+                <label for="confirmacionContrasena">Confirmacion contrasena</label>
+                <input type="text" name="confirmacionContrasena" id="confirmacionContrasena"
+                    formControlName="confirmacionContrasena" placeholder="Ingrese contraseña">
+            </div>
+        </div>
+        <div class="medio-formulario">
+            <div class="item">
+                <label for="apellido">Apellidos</label>
+                <input type="text" name="apellido" id="apellido" formControlName="apellido"
+                    placeholder="Ingrese apellidos">
+                <span *ngIf="campoRegistroEsValido('apellido','required')">
+                    campo apellidos es obligatorio
+                </span>
+
+            </div>
+
+            <div class="item">
+                <label for="documento">Numero de documento</label>
+                <input type="text" name="documento" id="documento" formControlName="documento"
+                    placeholder="Ingrese numero de documento">
+                <span *ngIf="campoRegistroEsValido('documento','required')">
+                    campo documento es obligatorio
+                </span>
+                <span *ngIf="campoRegistroEsValido('documento','pattern')">
+                    debes ingresar solo numeros
+                </span>
+            </div>
+
+
+            <div class="item">
+                <label for="correo">Correo electronico</label>
+                <input type="text" name="correo" id="correo" formControlName="correo"
+                    placeholder="Ingrese correo electronico">
+                <span *ngIf="campoRegistroEsValido('correo','required')">
+                    Correo electronico es obligatorio
+                </span>
+                <span *ngIf="campoRegistroEsValido('correo','email')">
+                    Correo no valido
+                </span>
+            </div>
+
+            <div class="item">
+                <label>Enviar</label>
+                <button>Registrar</button>
+            </div>
+        </div>
+    </form>
+    <p>Esta seguro de registrarse, ver nuestros terminos <br>
+        <a href="#">Terminos y condiciones</a>
+    </p>
+</div>
+<p class="texto">Already have an account? <a href="#">login</a></p>

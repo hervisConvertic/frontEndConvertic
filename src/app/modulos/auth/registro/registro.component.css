@@ -1,0 +1,94 @@
+h1 {
+    text-align: center;
+    padding-top: 15px;
+}
+
+h4 {
+    text-align: center;
+}
+
+form {
+    width: 400px;
+    display: flex;
+    align-items: normal;
+    justify-content: center;
+    color: black;
+}
+
+form label {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+span {
+    color: red;
+    font-size: 12px;
+}
+
+form .medio-formulario {
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+}
+
+form .medio-formulario .item input {
+    width: 85%;
+    padding: 7px;
+    border: none;
+    border: 1px solid gray;
+    border-radius: 6px;
+    outline: none;
+}
+
+form .medio-formulario .item select {
+    width: 93%;
+    padding: 7px;
+    border: none;
+    border: 1px solid gray;
+    border-radius: 6px;
+}
+
+form .medio-formulario .item button {
+    background-color: #5cb19d;
+    color: white;
+    width: 93%;
+    padding: 7px;
+    border: none;
+    border: 1px solid gray;
+    border-radius: 6px;
+    outline: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+p {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 15px;
+}
+
+.container {
+    width: 400px;
+    height: 620px;
+    margin: auto;
+    background-color: rgb(148, 187, 190);
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.texto {
+    text-align: center;
+    color: white;
+    font-size: 15px;
+    margin-top: -10px;
+}
+
+.texto a {
+    color: #49c1a2;
+}

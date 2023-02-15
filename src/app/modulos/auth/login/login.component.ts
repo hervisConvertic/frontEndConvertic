@@ -21,7 +21,7 @@ export class LoginComponent {
 
   constructor(private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router,
+    private router: Router
   ) { }
 
   campoLoginEsValido(campoLogin: string, validacion: string):
