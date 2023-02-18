@@ -14,21 +14,23 @@
         <section class="opciones-header">Home</section>
         <section class="opciones-header">Patrocinadores</section>
         <section class="input">
-
-            <!-- <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Buscar Productos</mat-label>
-                <input class="input-busqueda" type="text" placeholder="Ingrese un producto" aria-label="Number" matInput
-                    [(ngModel)]="termino" [matAutocomplete]="auto" (input)="buscar()">
-                <mat-autocomplete autoActiveFirstOption="" #auto="matAutocomplete"
-                    (optionSelected)="opcionSeleccionada($event)">
-                    <mat-option *ngFor="let option of itemProductos" [value]="option">
-                        {{ option.descripcion }}
-                        {{ option.marca.descripcion}}
-                        {{ option.color }}
-                    </mat-option>
-                </mat-autocomplete>
-            </mat-form-field> -->
+            <app-barra-busqueda (onEnter)="buscarProducto($event)" (onDebunce)="sugerencias($event)"
+                placeholder="buscar pais"></app-barra-busqueda>
 
         </section>
     </header>
+</div>
+<div>
+
+    <ul>
+        <li *ngFor="let item of productosSugerido"><a [routerLink]="['/verProducto',item.id]">{{item.descripcion}} |
+                {{item.color}} |
+                {{item.marca.descripcion}}</a>
+        </li>
+
+        <li>h1 estoy aqui</li>
+    </ul>
+</div>
+<div *ngIf="productosSugerido.length > 0">
+    <app-producto-buscado [productoSeleccionado]="productosSugerido"></app-producto-buscado>
 </div>

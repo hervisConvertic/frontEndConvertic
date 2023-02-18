@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ProductoTallaService } from '../../../servicios/producto-talla.service';
 
 import { MatAutocompleteActivatedEvent } from '@angular/material/autocomplete';
 import { FormControl } from '@angular/forms';
-import { map, Observable, flatMap } from 'rxjs';
-import { Producto } from '../../../interface/producto-genero';
+import { map, Observable, flatMap, startWith, Subject, debounceTime } from 'rxjs';
+import { Producto } from 'src/app/interface/producto';
+import { HttpClient } from '@angular/common/http';
+
 
 
 
@@ -15,33 +17,37 @@ import { Producto } from '../../../interface/producto-genero';
 })
 export class BarraBusquedaComponent implements OnInit {
 
-  genero: string = 'hombre';
-  myControl = new FormControl('');
-  options!: Producto[];
-  productosFiltrados!: Observable<Producto[]>;
-  productoSeleccionado!: Producto | undefined;
+  @Output() onEnter: EventEmitter<string> = new EventEmitter();
+  @Output() onDebunce: EventEmitter<string> = new EventEmitter();
+
+  debouncer: Subject<string> = new Subject();
+
+  genero: string = '';
+  termino: string = '';
+  hayError: boolean = false;
+  productosSugerido: Producto[] = [];
 
   constructor(private productoTallaService: ProductoTallaService) { }
 
-  ngOnInit() {
-    this.productosFiltrados = this.myControl.valueChanges
-      .pipe(
-        map(value => typeof value === 'string' ? value : value && value),
-        flatMap(value => value ? this._filter(value as string) : [])
-      );
+  ngOnInit(): void {
+    this.debouncer
+      .pipe(debounceTime(300))
+      .subscribe(valor => {
+        this.onDebunce.emit(valor);
+      });
   }
 
-  private _filter(value: string): Observable<Producto[]> {
-    const filterValue = value.toLowerCase();
-    console.log(filterValue);
-    return this.productoTallaService.buscarPorItem(this.genero, filterValue);
-  }
+  buscarProducto(): void {
+    this.onEnter.emit(this.termino);
 
-  seleccionProducto(event: MatAutocompleteActivatedEvent) {
-    console.log(event);
-    if (!event.option?.value) {
-      this.productoSeleccionado = undefined;
-      return
-    }
+  }
+  teclaPresionada() {
+    this.debouncer.next(this.termino);
+    console.log("estoy en tecla presionada")
+
   }
 }
+
+
+
+

@@ -1,0 +1,20 @@
+<div *ngIf="!producto; else divProducto">
+    Por favor espere...
+</div>
+
+<ng-template #divProducto>
+    <div class="container">
+        <div class="content-section">
+            <div class="card">
+                <h1>imagen <small>{{producto.imagen}}</small></h1>
+                <h1>producto: <small>{{producto.descripcion}}</small></h1>
+                <p>Lorem ipsum dolor sit amet consectetur, adipi. Error </p>
+                <h2>color: <small>{{producto.color}}</small></h2>
+                <h3>precio: <small>{{producto.precio | number}}</small></h3>
+                <h4>marca: <small>{{producto.marca.descripcion}}</small></h4>
+                <button>comprar</button>
+            </div>
+        </div>
+    </div>
+
+</ng-template>

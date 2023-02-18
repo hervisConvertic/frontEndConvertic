@@ -1,14 +1,18 @@
-<form class="example-form">
-    <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Bucar productos</mat-label>
-        <input type="text" placeholder="Ingrese un producto" aria-label="Number" matInput [formControl]="myControl"
-            [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="seleccionProducto($event)">
-            <mat-option *ngFor="let option of productosFiltrados | async" [value]="option.descripcion">
-                {{option.descripcion}} |
-                {{option.color}} |
-                {{option.marca.descripcion}}
-            </mat-option>
-        </mat-autocomplete>
-    </mat-form-field>
+<form (ngSubmit)="buscarProducto()" autocomplete="off">
+    <input type="text" name="termimo" [(ngModel)]="termino" (input)="teclaPresionada()" placeholder="buscar producto">
 </form>
+
+
+<!-- 
+<br>
+<div *ngIf="hayError">
+    no se encontro el producto con {{termino}}
+</div>
+<br>
+<div>
+    <ul>
+        <li *ngFor="let item of productosSugerido">
+            {{item.descripcion}}
+        </li>
+    </ul>
+</div> -->

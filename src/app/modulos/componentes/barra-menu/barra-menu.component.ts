@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductoTallaService } from '../../../servicios/producto-talla.service';
 import { ProductoGenero } from '../../../interface/producto-genero';
+import { Producto } from 'src/app/interface/producto';
 
 @Component({
   selector: 'app-barra-menu',
@@ -8,6 +9,8 @@ import { ProductoGenero } from '../../../interface/producto-genero';
   styleUrls: ['./barra-menu.component.css']
 })
 export class BarraMenuComponent implements OnInit {
+
+
 
   termino: string = '';
   seleccionGenero = 'hombre';
@@ -18,6 +21,8 @@ export class BarraMenuComponent implements OnInit {
 
   hayError: boolean = false;
   productos: ProductoGenero[] = [];
+  itemProducto: Producto[] = [];
+  productosSugerido: Producto[] = [];
 
   constructor(private productoTallaService: ProductoTallaService) { }
 
@@ -29,6 +34,7 @@ export class BarraMenuComponent implements OnInit {
 
   public obtenerGenero(): void {
     console.log(this.seleccionGenero);
+
     this.termino = "";
     this.productoTallaService.buscarPorGenero(this.seleccionGenero)
       .subscribe(productos => {
@@ -40,4 +46,31 @@ export class BarraMenuComponent implements OnInit {
       });
   }
 
+  buscarProducto(termino: string) {
+    this.hayError = false;
+    this.termino = termino;
+
+    this.productoTallaService.buscarPorItem(this.seleccionGenero, termino)
+      .subscribe((item) => {
+        console.log(item);
+        this.itemProducto = item;
+      },
+        (error) => {
+          this.hayError = true;
+          this.itemProducto = [];
+        });
+  }
+
+  sugerencias(termino: string) {
+    if (termino == '') {
+    } else {
+      this.hayError = false;
+      this.productoTallaService.buscarPorItem(this.seleccionGenero, termino)
+        .subscribe(
+          producto => this.productosSugerido = producto,
+          (err) => this.productosSugerido = []
+        );
+      console.log("estoy aqui en sugerencias");
+    }
+  }
 }

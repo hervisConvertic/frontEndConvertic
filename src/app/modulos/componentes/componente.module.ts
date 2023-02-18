@@ -8,13 +8,17 @@ import { BarraBusquedaComponent } from './barra-busqueda/barra-busqueda.componen
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ProductoBuscadoComponent } from './producto-buscado/producto-buscado.component';
+import { VerProductoComponent } from './ver-producto/ver-producto.component';
 
 
 
 @NgModule({
   declarations: [
     BarraMenuComponent,
-    BarraBusquedaComponent
+    BarraBusquedaComponent,
+    ProductoBuscadoComponent,
+    VerProductoComponent
   ],
   imports: [
     CommonModule,
