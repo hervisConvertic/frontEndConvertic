@@ -1,13 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ProductoTallaService } from '../../../servicios/producto-talla.service';
-
-import { MatAutocompleteActivatedEvent } from '@angular/material/autocomplete';
-import { FormControl } from '@angular/forms';
-import { map, Observable, flatMap, startWith, Subject, debounceTime } from 'rxjs';
+import { Subject, debounceTime } from 'rxjs';
 import { Producto } from 'src/app/interface/producto';
-import { HttpClient } from '@angular/common/http';
-
-
 
 
 @Component({

@@ -10,7 +10,7 @@ export interface Producto {
     descripcion: string;
     color: string;
     precio: number;
-    busquedas: number;
+    busqueda: number;
     imagen: string;
     marca: Talla;
     genero: Talla;

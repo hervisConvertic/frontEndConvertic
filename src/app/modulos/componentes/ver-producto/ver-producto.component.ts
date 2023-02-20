@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { switchMap, tap } from 'rxjs/operators';
 import { ProductoTallaService } from '../../../servicios/producto-talla.service';
 import { Producto } from '../../../interface/producto-genero';
+import { ProductoService } from '../../../servicios/producto.service';
 
 @Component({
   selector: 'app-ver-producto',
@@ -12,9 +13,11 @@ import { Producto } from '../../../interface/producto-genero';
 export class VerProductoComponent implements OnInit {
 
   producto!: Producto;
+  actualizarProducto!: Producto;
 
   constructor(private activatedRoute: ActivatedRoute,
-    private productoTallaService: ProductoTallaService
+    private productoTallaService: ProductoTallaService,
+    private _productoService: ProductoService
   ) { }
 
   ngOnInit(): void {
@@ -28,6 +31,16 @@ export class VerProductoComponent implements OnInit {
       .subscribe(producto => {
         this.producto = producto;
       });
+
+    this.activatedRoute.params
+      .pipe(
+        switchMap(({ id }) => this._productoService.actualizarBusqueda(id)),
+        tap(console.log)
+      )
+      .subscribe(producto => {
+        this.actualizarProducto = producto;
+      });
+
   }
 
 }

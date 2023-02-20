@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ProductoBuscadoComponent } from './producto-buscado/producto-buscado.component';
 import { VerProductoComponent } from './ver-producto/ver-producto.component';
+import { ProductosMasBuscadosComponent } from './productos-mas-buscados/productos-mas-buscados.component';
 
 
 
@@ -18,7 +19,8 @@ import { VerProductoComponent } from './ver-producto/ver-producto.component';
     BarraMenuComponent,
     BarraBusquedaComponent,
     ProductoBuscadoComponent,
-    VerProductoComponent
+    VerProductoComponent,
+    ProductosMasBuscadosComponent
   ],
   imports: [
     CommonModule,

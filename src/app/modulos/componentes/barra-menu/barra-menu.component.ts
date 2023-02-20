@@ -21,6 +21,7 @@ export class BarraMenuComponent implements OnInit {
 
   hayError: boolean = false;
   productos: ProductoGenero[] = [];
+
   itemProducto: Producto[] = [];
   productosSugerido: Producto[] = [];
 

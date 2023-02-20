@@ -3,7 +3,7 @@ export interface Producto {
     descripcion: string;
     color: string;
     precio: number;
-    busquedas: number;
+    busqueda: number;
     imagen: string;
     marca: Genero;
     genero: Genero;
