@@ -16,6 +16,7 @@ export class ProductoService {
     const url = `${this.urlEndPoint}/${id}`;
     return this.http.patch<Producto>(url, { headers: this.httpHeaders });
   }
+
   verProductosMasBuscados(): Observable<Producto[]> {
     return this.http.get<Producto[]>(this.urlEndPoint);
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Producto } from 'src/app/interface/producto';
 
+
 @Component({
   selector: 'app-producto-buscado',
   templateUrl: './producto-buscado.component.html',
