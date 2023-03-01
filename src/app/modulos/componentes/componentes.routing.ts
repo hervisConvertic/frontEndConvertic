@@ -4,12 +4,14 @@ import { BarraMenuComponent } from './barra-menu/barra-menu.component';
 import { VerProductoComponent } from './ver-producto/ver-producto.component';
 import { ProductoBuscadoComponent } from './producto-buscado/producto-buscado.component';
 import { ProductosMasBuscadosComponent } from './productos-mas-buscados/productos-mas-buscados.component';
+import { CarritoCompraComponent } from './carrito-compra/carrito-compra.component';
 
 export const ComponentesRuta: Route[] = [
     { path: 'barra-menu', component: BarraMenuComponent },
     { path: 'barra-busqueda', component: BarraBusquedaComponent },
     { path: 'verProducto/:id', component: VerProductoComponent },
     { path: 'productoBuscado', component: ProductoBuscadoComponent },
-    { path: 'verProductosMasBuscados', component: ProductosMasBuscadosComponent }
+    { path: 'verProductosMasBuscados', component: ProductosMasBuscadosComponent },
+    { path: 'carritoCompras', component: CarritoCompraComponent }
 
 ]

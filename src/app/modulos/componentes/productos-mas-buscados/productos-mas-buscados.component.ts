@@ -20,6 +20,18 @@ export class ProductosMasBuscadosComponent implements OnInit {
       .subscribe(producto => {
         this.producto = producto;
       });
+    localStorage.setItem('nombre', 'hervis');
+
+    const product = {
+      'nombre': 'monitor de 24 pulgadas',
+      'precio': 300
+    }
+    const productString = JSON.stringify(product);
+    console.log(productString);
+    localStorage.setItem('product', productString);
+    console.log(product);
+
+
   }
 
 }

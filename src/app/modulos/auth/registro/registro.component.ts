@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../servicios/auth.service';
 import { Router } from '@angular/router';
 import { TipoDocumentoService } from '../../../servicios/tipo-documento.service';
@@ -14,22 +14,27 @@ export class RegistroComponent implements OnInit {
 
   documentos!: TipoDocumento[];
 
-  expresionContrasena: string = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{5,}$";
-  miFormularioRegistro: FormGroup = this.formBuilder.group({
-    nombre: ['', [Validators.required]],
-    apellido: ['', [Validators.required]],
-    tipoDocumento: [''],
-    documento: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-    correo: ['', [Validators.required, Validators.email]],
-    contrasena: ['', [Validators.required]],
-    confirmacionContrasena: ['']
-  })
+
+  miFormularioRegistro!: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
     private authService: AuthService,
     private tipoDocumentoService: TipoDocumentoService,
     private router: Router
-  ) { }
+  ) {
+    this.miFormularioRegistro = this.formBuilder.group({
+      nombre: ['', [Validators.required]],
+      apellido: ['', [Validators.required]],
+      tipoDocumento: [''],
+      documento: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      correo: ['', [Validators.required, Validators.email]],
+      contrasena: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{5,}$/)
+      ]),
+      confirmacionContrasena: ['']
+    })
+  }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -44,6 +49,8 @@ export class RegistroComponent implements OnInit {
   }
 
   public registro(): void {
+    console.log(this.miFormularioRegistro.controls['contrasena']);
+    //console.log(this.miFormularioRegistro);
     if (this.miFormularioRegistro.invalid) {
       this.miFormularioRegistro.markAllAsTouched();
       return;
@@ -51,6 +58,7 @@ export class RegistroComponent implements OnInit {
 
     this.authService.registro(this.miFormularioRegistro.value).subscribe(
       (response: any) => {
+
         console.log(response);
         if (response.status === "success") {
           console.log('Usuario registrado correctamente');

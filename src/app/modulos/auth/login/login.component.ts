@@ -40,14 +40,26 @@ export class LoginComponent {
     this.authService.login(this.miFormularioLogin.value).subscribe(
 
       (response: any) => {
-        console.log(response);
+        console.log('Respuesta del servidor: ', response);
+        console.log('Correo electrónico: ', response);
 
-        if (response.status === "success") {
-          console.log('Inicio de sesión exitoso');
-          this.router.navigate(['/barra-menu']);
+        const emailRegex = /\S+@\S+\.\S+/;
+        const emailMatch = response.correo_electronico.match(emailRegex);
+        console.log(emailMatch)
+        if (emailMatch !== null) {
+
+          console.log("bienvenido usted se ha logueado correctamente");
+          console.log('Correo electrónico: ' + emailMatch[0]);
+          localStorage.setItem('correo', emailMatch[0]);
+          const miCorreo = localStorage.getItem('correo');
+          console.log("este es el correo ingresado: " + miCorreo);
+
         } else {
-          console.log('Error al iniciar sesión: ' + response.message);
+          console.log('error al iniciar sesion: ' + response.message);
         }
+
+
+        // Manejar el correo electrónico aquí
       },
       //  error
       (error) => {

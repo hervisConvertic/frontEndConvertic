@@ -27,6 +27,9 @@
                 <span *ngIf="campoRegistroEsValido('contrasena','required')">
                     campo contraseña es obligatorio
                 </span>
+                <span *ngIf="campoRegistroEsValido('contrasena','pattern')">
+                    debes ingresar mayusculas, minusculas y letras
+                </span>
             </div>
             <div class="item">
                 <label for="confirmacionContrasena">Confirmacion contrasena</label>

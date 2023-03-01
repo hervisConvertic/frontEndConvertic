@@ -31,6 +31,22 @@ export class BarraMenuComponent implements OnInit {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.obtenerGenero();
+
+    const nombre = localStorage.getItem('nombre');
+    console.log(nombre);
+
+    const productoJSON = localStorage.getItem('product');
+    if (productoJSON !== null) {
+      const productok = JSON.parse(productoJSON)
+      console.log(productok.precio);
+      //const precio = JSON.parse(productoJSON.precio);
+    } else {
+      console.log("el objeto no existe, o esta null")
+    }
+    localStorage.clear();
+
+
+    // const productoJS = JSON.parse(productoJSON);
   }
 
   public obtenerGenero(): void {

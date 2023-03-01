@@ -1,4 +1,4 @@
-<div *ngIf="!productoTalla; else divProducto">
+<div *ngIf="!producto; else divProducto">
     Por favor espere...
 </div>
 
@@ -6,23 +6,35 @@
     <div class="container">
         <div class="content-section">
             <div class="card">
-                <h1>imagen <small>{{productoTalla.stock}}</small></h1>
-                <h2>Categoria: <small>{{productoTalla.producto.genero.descripcion}}</small></h2>
-                <h1>producto: <small>{{productoTalla.producto.descripcion}}</small></h1>
+                <h1>imagen <small>{{producto.imagen}}</small></h1>
+                <h2>Categoria: <small>{{producto.genero.descripcion}}</small></h2>
+                <h1>producto: <small>{{producto.descripcion}}</small></h1>
                 <p>Lorem ipsum dolor sit amet consectetur, adipi. Error </p>
-                <h2>color: <small>{{productoTalla.producto.color}}</small></h2>
-                <h3>precio: <small>{{productoTalla.producto.precio| number}}</small></h3>
-                <h4>marca: <small>{{productoTalla.producto.marca.descripcion}}</small></h4>
-                <!-- <h4>cantidad disponible: <small>{{tallaSeleccionada.stock}}</small></h4> -->
+                <h2>color: <small>{{producto.color}}</small></h2>
+                <h3>precio: <small>{{producto.precio| number}}</small></h3>
+                <h4>marca: <small>{{producto.marca.descripcion}}</small></h4>
+                <div *ngIf="productoTallaSeleccionado">
+                    <h4>cantidad disponible: <small>{{productoTallaSeleccionado.stock}}</small></h4>
+                </div>
+
                 <div>
                     <label for="talla">Talla: </label>
                     <select name="" id="talla" [(ngModel)]="tallaSeleccionada" (change)="actualizarTalla()">
                         <option *ngFor="let talla of tallas" [ngValue]="talla">{{talla.descripcion}}</option>
                     </select>
                 </div>
-                <button>comprar</button>
+                <form (ngSubmit)="enviarProducto()" autocomplete="off">
+                    <div>
+                        <label for="cantidad">Cantidad</label>
+                        <input type="number" name="cantidad" id="cantidad" [(ngModel)]="cantidad"
+                            placeholder="ingrese cantidad">
+                    </div>
+
+                    <button>comprar</button>
+                </form>
             </div>
         </div>
+
     </div>
 
 </ng-template>

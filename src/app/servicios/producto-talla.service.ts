@@ -25,6 +25,7 @@ export class ProductoTallaService {
     const url = `${this.urlBusquedaPorItems}/${genero}/${termino}`;
     return this.http.get<Producto[]>(url);
   }
+
   buscarPorId(id: number): Observable<Producto> {
     const url = `${this.urlBusquedaPorItems}/${id}`;
     return this.http.get<Producto>(url);
@@ -32,6 +33,11 @@ export class ProductoTallaService {
 
   obtenerProductoTallaPorId(id: number): Observable<ProductoTalla> {
     const url = `${this.httpProductoTalla}/${id}`;
+    return this.http.get<ProductoTalla>(url);
+  }
+
+  obtenerCantidadPorId(idProducto: number, idTalla: number): Observable<ProductoTalla> {
+    const url = `${this.urlProductoGenero}/${idProducto}/${idTalla}`;
     return this.http.get<ProductoTalla>(url);
   }
 }

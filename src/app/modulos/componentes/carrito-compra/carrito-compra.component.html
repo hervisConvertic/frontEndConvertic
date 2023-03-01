@@ -1,0 +1,39 @@
+<div>
+    <h2>Carrito de compras</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Imagen</th>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Lista de productos en el carrito -->
+            <tr *ngFor="let item of cartItems">
+                <td>
+                    <img [src]="item.image" [alt]="item.name" width="50" height="50">
+                </td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.price }}</td>
+                <td>
+                    <input type="number" min="1" [(ngModel)]="item.quantity" (change)="actualizarProducto(item)">
+                </td>
+                <td>{{ item.price * item.quantity }}</td>
+                <td>
+                    <button (click)="eliminarProducto(item)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4"><strong>Total</strong></td>
+                <td>{{ obtenerTotal() }}</td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

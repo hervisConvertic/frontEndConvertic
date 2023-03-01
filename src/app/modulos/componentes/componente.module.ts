@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ProductoBuscadoComponent } from './producto-buscado/producto-buscado.component';
 import { VerProductoComponent } from './ver-producto/ver-producto.component';
 import { ProductosMasBuscadosComponent } from './productos-mas-buscados/productos-mas-buscados.component';
+import { CarritoCompraComponent } from './carrito-compra/carrito-compra.component';
 
 
 
@@ -20,7 +21,8 @@ import { ProductosMasBuscadosComponent } from './productos-mas-buscados/producto
     BarraBusquedaComponent,
     ProductoBuscadoComponent,
     VerProductoComponent,
-    ProductosMasBuscadosComponent
+    ProductosMasBuscadosComponent,
+    CarritoCompraComponent
   ],
   imports: [
     CommonModule,
