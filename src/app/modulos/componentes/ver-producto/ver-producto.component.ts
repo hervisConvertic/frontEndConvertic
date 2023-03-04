@@ -10,6 +10,8 @@ import { TallaService } from '../../../servicios/talla.service';
 import { ProductoTalla } from '../../../interface/producto-talla';
 import { CarritoCompra } from '../../../interface/carrito-compra';
 import { NuevoProductoCarrito } from '../../../interface/nuevo-producto-carrito';
+import { AuthService } from '../../../servicios/auth.service';
+import { Usuario } from '../../../interface/usuario';
 
 
 
@@ -51,12 +53,15 @@ export class VerProductoComponent implements OnInit {
   actualizarProducto!: Producto;
   tallas!: Talla[];
   tallaSeleccionada!: Talla;
+  usuarioLogueado!: Usuario;
+  usuario!: Usuario;
 
   constructor(private activatedRoute: ActivatedRoute,
     private productoTallaService: ProductoTallaService,
     private _productoService: ProductoService,
     private _tallaService: TallaService,
-    private _carritoCompraService: CarritoCompraService
+    private _carritoCompraService: CarritoCompraService,
+    private _authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -89,6 +94,14 @@ export class VerProductoComponent implements OnInit {
         this.actualizarProducto = producto;
       });
 
+    const correoUsuarioActual = localStorage.getItem('correo');
+    if (correoUsuarioActual !== null) {
+      this._authService.obtenerUsuarioPorCorreo(correoUsuarioActual)
+        .subscribe((item => {
+          console.log(item);
+          this.usuarioLogueado = item;
+        }))
+    }
   }
 
   actualizarTalla(): void {
@@ -105,13 +118,17 @@ export class VerProductoComponent implements OnInit {
   enviarProducto(): void {
     if (this.productoTallaSeleccionado.stock >= this.cantidad) {
 
+      let usuario = { usuario: this.usuarioLogueado }
+      console.log(usuario);
       let cantidad = { cantidad: this.cantidad }
       console.log(cantidad);
       console.log(this.productoTallaSeleccionado);
+      console.log(this.usuarioLogueado);
 
       let objetoCombinado: NuevoProductoCarrito = {
-        productoTalla: this.productoTallaSeleccionado, cantidad: cantidad.cantidad,
-
+        usuario: this.usuarioLogueado,
+        productoTalla: this.productoTallaSeleccionado,
+        cantidad: cantidad.cantidad,
       };
       console.log(objetoCombinado);
 

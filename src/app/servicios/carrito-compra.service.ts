@@ -17,4 +17,15 @@ export class CarritoCompraService {
   registrarProducto(carritoCompra: NuevoProductoCarrito): Observable<CarritoCompra> {
     return this.http.post<CarritoCompra>(this.urlEndPoint, carritoCompra, { headers: this.httpHeaders });
   }
+
+  obtenerCarritoPorId(id: number): Observable<CarritoCompra[]> {
+    const url = `${this.urlEndPoint}/${id}`;
+    return this.http.get<CarritoCompra[]>(url);
+  }
+
+  eliminarCarritoPorId(id: number): Observable<CarritoCompra> {
+    const url = `${this.urlEndPoint}/${id}`;
+    return this.http.delete<CarritoCompra>(url, { headers: this.httpHeaders })
+  }
+
 }

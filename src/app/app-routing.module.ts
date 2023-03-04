@@ -5,10 +5,11 @@ import { LayoutHomeComponent } from './modulos/layout/layout-home/layout-home.co
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'auth',
     component: LayoutLoginComponent,
     children: [
-      { path: '', loadChildren: () => import('src/app/modulos/auth/auth.module').then(m => m.AuthModule) }
+      { path: '', loadChildren: () => import('src/app/modulos/auth/auth.module').then(m => m.AuthModule) },
+
     ]
   },
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
     component: LayoutHomeComponent,
     children: [
       { path: '', loadChildren: () => import('src/app/modulos/componentes/componente.module').then(m => m.ComponenteModule) }
+
     ]
   }
 ];

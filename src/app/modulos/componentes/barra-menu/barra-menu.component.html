@@ -34,3 +34,17 @@
 <div *ngIf="productosSugerido.length > 0">
     <app-producto-buscado [productoSeleccionado]="productosSugerido"></app-producto-buscado>
 </div>
+
+<br>
+<br>
+<ng-container *ngIf="estaAutenticado else NoAutenticado">
+    <h1>Bienvenido: <span>{{usuarioActual}}</span></h1>
+    <br>
+
+
+    <button (click)="onCerrarSesion()">Cerrar sesion prueba</button>
+</ng-container>
+
+<ng-template #NoAutenticado>
+    <button (click)="onIniciarSesion()">Iniciar sesion prueba</button>
+</ng-template>

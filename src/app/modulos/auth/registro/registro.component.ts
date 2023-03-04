@@ -40,6 +40,8 @@ export class RegistroComponent implements OnInit {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.tipoDocumentoService.getTiposDocumento().subscribe(documentos => this.documentos = documentos)
+    const miCorreo = localStorage.getItem('correo');
+    console.log("obtniendo correo desde el login: " + miCorreo);
   }
 
   campoRegistroEsValido(campoRegistro: string, validacion: string):

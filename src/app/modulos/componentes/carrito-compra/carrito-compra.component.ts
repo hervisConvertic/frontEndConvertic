@@ -1,63 +1,104 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../../servicios/auth.service';
+import { CarritoCompra } from '../../../interface/carrito-compra';
+import { Usuario } from '../../../interface/usuario';
+import { CarritoCompraService } from '../../../servicios/carrito-compra.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-carrito-compra',
   templateUrl: './carrito-compra.component.html',
   styleUrls: ['./carrito-compra.component.css']
 })
-export class CarritoCompraComponent {
+export class CarritoCompraComponent implements OnInit {
 
-  // Lista de productos en el carrito
-  cartItems: any[] = [
-    {
-      id: 1,
-      name: 'Producto 1',
-      image: 'https://via.placeholder.com/50x50',
-      price: 10,
-      quantity: 1
-    },
-    {
-      id: 2,
-      name: 'Producto 2',
-      image: 'https://via.placeholder.com/50x50',
-      price: 20,
-      quantity: 2
-    },
-    {
-      id: 3,
-      name: 'Producto 2',
-      image: 'https://via.placeholder.com/50x50',
-      price: 35,
-      quantity: 3
-    },
-    {
-      id: 3,
-      name: 'Producto 2',
-      image: 'https://via.placeholder.com/50x50',
-      price: 35,
-      quantity: 3
+  hayError: boolean = false;
+  productoCarrito!: CarritoCompra[];
+  usuarioLogueado!: Usuario;
+  idUsuarioActual!: number;
+
+  constructor(private _authService: AuthService,
+    private _carritoCompraService: CarritoCompraService
+  ) { }
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+
+    const correoUsuarioActual = localStorage.getItem('correo');
+    if (correoUsuarioActual !== null) {
+      this._authService.obtenerUsuarioPorCorreo(correoUsuarioActual)
+        .subscribe((item => {
+          console.log(item);
+          this.usuarioLogueado = item;
+          console.log("este es el usuario logueado: " + this.usuarioLogueado.id)
+          this.idUsuarioActual = this.usuarioLogueado.id;
+          console.log(this.idUsuarioActual);
+          //funcion
+          this.obtenerCarrito(this.idUsuarioActual);
+        }))
+
     }
-  ];
+  }
 
-  constructor() { }
+  obtenerCarrito(id: number): void {
+    console.log("estoy aqui en el metodo" + id);
+    this._carritoCompraService.obtenerCarritoPorId(id)
+      .subscribe(item => {
+        console.log(item);
+        this.productoCarrito = item;
+        console.log("probando id" + this.productoCarrito);
+      }, (error) => {
+        this.hayError = true;
+      })
+  }
+
 
   // Para actualizar la cantidad de un producto al carrito
   actualizarProducto(item: any) {
-    const index = this.cartItems.indexOf(item);
-    this.cartItems[index].quantity = item.quantity;
+
   }
 
   // para eliminar productos del carrito
-  eliminarProducto(item: any) {
-    const index = this.cartItems.indexOf(item);
-    this.cartItems.splice(index, 1);
+  eliminarProducto(carrito: CarritoCompra) {
+
+    Swal.fire({
+      title: 'Esta seguro?',
+      text: `¿Seguro que desea eliminar el producto ${carrito.productoTalla.producto.descripcion}`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar!',
+      cancelButtonText: 'No, cancelar!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this._carritoCompraService.eliminarCarritoPorId(carrito.id)
+          .subscribe(
+            respose => {
+              this.productoCarrito = this.productoCarrito
+                .filter(c => c !== carrito)
+            }
+          )
+
+        Swal.fire(
+          'Producto Eliminado!',
+          `Producto ${carrito.productoTalla.producto.descripcion} eliminado con éxito.`,
+          'success'
+        )
+      }
+    })
   }
 
   // para obtener el total de la compra
   obtenerTotal() {
     let total = 0;
-    for (const item of this.cartItems) {
-      total += item.price * item.quantity;
+    if (Array.isArray(this.productoCarrito)) {
+      for (const item of this.productoCarrito) {
+        total += item.productoTalla.producto.precio * item.cantidad;
+      }
     }
     return total;
   }

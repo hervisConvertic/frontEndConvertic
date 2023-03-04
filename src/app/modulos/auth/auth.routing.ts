@@ -5,4 +5,6 @@ import { RegistroComponent } from './registro/registro.component';
 export const AuthRutas: Route[] = [
     { path: 'login', component: LoginComponent },
     { path: 'registro', component: RegistroComponent },
+    
+
 ]

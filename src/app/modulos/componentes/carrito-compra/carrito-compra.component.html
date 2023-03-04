@@ -13,16 +13,18 @@
         </thead>
         <tbody>
             <!-- Lista de productos en el carrito -->
-            <tr *ngFor="let item of cartItems">
+            <tr *ngFor="let item of productoCarrito">
                 <td>
-                    <img [src]="item.image" [alt]="item.name" width="50" height="50">
+                    <!-- <img [src]="item.productoTalla.producto.imagen" [alt]="item.productoTalla.producto.imagen"
+                        width="50" height="50"> -->
+                    <h2>{{item.productoTalla.producto.imagen}}</h2>
                 </td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.price }}</td>
+                <td>{{ item.productoTalla.producto.descripcion }}</td>
+                <td>{{ item.productoTalla.producto.precio }}</td>
                 <td>
-                    <input type="number" min="1" [(ngModel)]="item.quantity" (change)="actualizarProducto(item)">
+                    <input type="number" min="1" [(ngModel)]="item.cantidad" (change)="actualizarProducto(item)">
                 </td>
-                <td>{{ item.price * item.quantity }}</td>
+                <td>{{ item.productoTalla.producto.precio * item.cantidad }}</td>
                 <td>
                     <button (click)="eliminarProducto(item)">Eliminar</button>
                 </td>
