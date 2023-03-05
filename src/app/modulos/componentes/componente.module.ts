@@ -12,6 +12,8 @@ import { ProductoBuscadoComponent } from './producto-buscado/producto-buscado.co
 import { VerProductoComponent } from './ver-producto/ver-producto.component';
 import { ProductosMasBuscadosComponent } from './productos-mas-buscados/productos-mas-buscados.component';
 import { CarritoCompraComponent } from './carrito-compra/carrito-compra.component';
+import { FormularioConfirmacionComponent } from './formulario-confirmacion/formulario-confirmacion.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -22,7 +24,8 @@ import { CarritoCompraComponent } from './carrito-compra/carrito-compra.componen
     ProductoBuscadoComponent,
     VerProductoComponent,
     ProductosMasBuscadosComponent,
-    CarritoCompraComponent
+    CarritoCompraComponent,
+    FormularioConfirmacionComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +34,8 @@ import { CarritoCompraComponent } from './carrito-compra/carrito-compra.componen
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
   ]
 })
 export class ComponenteModule { }

@@ -36,6 +36,13 @@
                 <td>{{ obtenerTotal() }}</td>
                 <td></td>
             </tr>
+            <tr>
+                <td colspan="6">
+                    <!-- <button (click)="realizarCompra()"
+                        [disabled]="productoCarrito.length === 0 || !productoCarrito">Realizar Compra</button> -->
+                </td>
+            </tr>
         </tfoot>
     </table>
 </div>
+<button mat-button (click)="realizarCompra()">realizar compra</button>

@@ -4,6 +4,8 @@ import { CarritoCompra } from '../../../interface/carrito-compra';
 import { Usuario } from '../../../interface/usuario';
 import { CarritoCompraService } from '../../../servicios/carrito-compra.service';
 import Swal from 'sweetalert2';
+import { FormularioConfirmacionComponent } from '../formulario-confirmacion/formulario-confirmacion.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -14,12 +16,13 @@ import Swal from 'sweetalert2';
 export class CarritoCompraComponent implements OnInit {
 
   hayError: boolean = false;
-  productoCarrito!: CarritoCompra[];
+  productoCarrito: CarritoCompra[] = [];
   usuarioLogueado!: Usuario;
   idUsuarioActual!: number;
 
   constructor(private _authService: AuthService,
-    private _carritoCompraService: CarritoCompraService
+    private _carritoCompraService: CarritoCompraService,
+    public dialogo: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -101,6 +104,19 @@ export class CarritoCompraComponent implements OnInit {
       }
     }
     return total;
+  }
+
+  realizarCompra() {
+    console.log('realizar compra')
+    this.abrirDialogo();
+  }
+
+  abrirDialogo() {
+    const dialogoReferencia = this.dialogo.open(FormularioConfirmacionComponent);
+    dialogoReferencia.afterClosed().subscribe(result => {
+      console.log(`Dialogo result: ${result}`);
+
+    });
   }
 
 }

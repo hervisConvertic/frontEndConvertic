@@ -1,0 +1,50 @@
+<div class="body">
+
+    <h1 mat-dialog-title>Verificar datos de envio de producto</h1>
+    <div mat-dialog-content>
+
+        <form (ngSubmit)="formularioEmergente()" autocomplete="off" [formGroup]="miFormularioEmergente">
+            <div class="item">
+                <label for="fecha">Fecha</label>
+                <input type="text" name="fecha" id="fecha" formControlName="fecha" placeholder="Ingrese fecha">
+                <span *ngIf="campoEmergenteEsValido('fecha','required')">
+                    Campo fecha es obligatorio
+                </span>
+            </div>
+            <div class="item">
+                <label for="ciudad">Seleccione ciudad</label>
+                <select formControlName="ciudad" name="ciudad">
+                    <option *ngFor="let ciudad of ciudades" [ngValue]="ciudad">
+                        {{ciudad.descripcion}}
+                    </option>
+                </select>
+            </div>
+            <div class="item">
+                <label for="direccion">Direccion de envio</label>
+                <input type="text" name="direccion" id="direccion" formControlName="direccion"
+                    placeholder="Ingrese direccion" required>
+                <span *ngIf="campoEmergenteEsValido('direccion','required')">
+                    Campo direccion es obligatorio
+                </span>
+
+            </div>
+            <div class="item">
+                <label for="correo">Correo electronico</label>
+                <input type="text" name="correo" id="correo" formControlName="correo"
+                    placeholder="Ingrese correo electronico" required>
+                <span *ngIf="campoEmergenteEsValido('correo','required')">
+                    Campo correo es obligatorio
+                </span>
+                <span *ngIf="campoEmergenteEsValido('correo','email')">
+                    Correo electronico no valido
+                </span>
+            </div>
+            <div class="item">
+                <input type="submit" value="Confirmar">
+            </div>
+        </form>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">Cerrar</button>
+    </div>
+</div>

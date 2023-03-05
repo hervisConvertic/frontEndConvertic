@@ -6,6 +6,7 @@ import { AuthService } from '../../../servicios/auth.service';
 import { Usuario } from '../../../interface/usuario';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-barra-menu',
   templateUrl: './barra-menu.component.html',
@@ -34,6 +35,7 @@ export class BarraMenuComponent implements OnInit {
   constructor(private productoTallaService: ProductoTallaService,
     private _authService: AuthService,
     private router: Router
+
   ) { }
 
   ngOnInit(): void {
@@ -110,4 +112,6 @@ export class BarraMenuComponent implements OnInit {
     console.log("estoy en iniciar seseion")
     this.router.navigate(['/auth/login']);
   }
+
+
 }
