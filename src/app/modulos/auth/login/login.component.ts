@@ -43,6 +43,7 @@ export class LoginComponent {
 
         const emailRegex = /\S+@\S+\.\S+/;
         const emailMatch = response.correo_electronico.match(emailRegex);
+
         if (emailMatch !== null) {
           console.log("bienvenido usted se ha logueado correctamente");
           localStorage.setItem('correo', emailMatch[0]);
