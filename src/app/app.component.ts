@@ -11,8 +11,5 @@ export class AppComponent {
 
   constructor(private router: Router) { }
 
-  onIniciarSesion(): void {
-    localStorage.removeItem('correo')
-    this.router.navigate(['/auth/login']);
-  }
+
 }

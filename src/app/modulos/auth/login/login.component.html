@@ -1,33 +1,48 @@
 <div>
-    <div class="container">
-        <form (ngSubmit)="login()" autocomplete="off" [formGroup]="miFormularioLogin">
-            <h2>Ingresar al sitio</h2>
-            <div class="item">
-                <label for="correo">Correo Electronico</label>
-                <input type="text" name="correo" id="correo" formControlName="correo"
-                    placeholder="Ingrese correo electronico">
-                <span *ngIf="campoLoginEsValido('correo','required')">
-                    Correo electronico es obligatorio
-                </span>
-                <span *ngIf="campoLoginEsValido('correo','email')">
-                    Correo electronico no valido
-                </span>
-            </div>
-            <div class="item">
-                <label for="contrasena">Contraseña</label>
-                <input type="password" name="contrasena" id="contrasena" formControlName="contrasena"
-                    placeholder="Ingrese contraseña">
-                <span *ngIf="campoLoginEsValido('contrasena','required')">
-                    Contraseña es obligatoria
-                </span>
-                <span *ngIf="campoLoginEsValido('contrasena','pattern')">
-                    Contraseña no valida
-                </span>
-            </div>
-            <div class="item">
-                <input type="submit" value="ingresar">
-            </div>
-        </form>
+    <div class="header">
+        <header>
+            <h1>Bienvenido a la tienda <span class="titulo">ConverTic-Shop</span> </h1>
+        </header>
     </div>
-    <p class="texto">No tienes cuenta? <a href="#">Registrese aqui</a></p>
+    <div class="body">
+
+        <div><img src="../../../../assets/angela-bailey-jlo7Bf4tUoY-unsplash-removebg-preview.png" alt=""></div>
+
+        <div class="container">
+            <form (ngSubmit)="login()" autocomplete="off" [formGroup]="miFormularioLogin">
+                <h2>Formulario de login</h2>
+                <div class="item">
+                    <label for="correo">Correo Electrónico</label>
+                    <input type="text" name="correo" id="correo" formControlName="correo"
+                        placeholder="Ingrese correo electrónico">
+                    <span *ngIf="campoLoginEsValido('correo','required')">
+                        Correo electrónico es obligatorio
+                    </span>
+                    <span *ngIf="campoLoginEsValido('correo','email')">
+                        Correo electronico no valido
+                    </span>
+                </div>
+                <div class="item">
+                    <label for="contrasena">Contraseña</label>
+                    <input type="password" name="contrasena" id="contrasena" formControlName="contrasena"
+                        placeholder="Ingrese contraseña">
+                    <span *ngIf="campoLoginEsValido('contrasena','required')">
+                        Contraseña es obligatoria
+                    </span>
+                    <span *ngIf="campoLoginEsValido('contrasena','pattern')">
+                        Contraseña no valida
+                    </span>
+                </div>
+                <div class="item">
+                    <input type="submit" value="ingresar">
+                </div>
+                <div>
+                    <p>¿No tienes cuenta? Registrate.</p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="registro">
+    <div><img class="registrar" src="../../../../assets/LogoMakr-9uiWdV.png" alt=""></div>
 </div>

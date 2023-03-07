@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../servicios/auth.service';
+import Swal from 'sweetalert2';
 
 
 
@@ -38,27 +39,14 @@ export class LoginComponent {
     }
 
     this.authService.login(this.miFormularioLogin.value).subscribe(
-
-      (response: any) => {
-
-        const emailRegex = /\S+@\S+\.\S+/;
-        const emailMatch = response.correo_electronico.match(emailRegex);
-
+      response => {
+        const confirmarCorreo = /\S+@\S+\.\S+/;
+        const emailMatch = response.correo.match(confirmarCorreo);
         if (emailMatch !== null) {
-          console.log("bienvenido usted se ha logueado correctamente");
           localStorage.setItem('correo', emailMatch[0]);
-          this.router.navigate(['/barra-menu']);
-
-
-        } else {
-          console.log('error al iniciar sesion: ' + response.message);
         }
-
-        // Manejar el correo electrónico aquí
-      },
-      //  error
-      (error) => {
-        console.log('Error al iniciar sesión: ' + error);
+        this.router.navigate(['/barra-menu'])
+        Swal.fire('Login usuario', `Usuario ${response.correo} logueado con exito!`, 'success')
       }
     );
     console.log(this.miFormularioLogin.value);

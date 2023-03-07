@@ -1,10 +1,47 @@
+.header {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.titulo {
+    font-size: 24px;
+    color: #54a0ff;
+    font-weight: bold;
+}
+
+.registro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.registrar {
+    background-color: #dff9fb;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+.registrar:hover {
+    background-color: #c8d6e5;
+}
+
+.body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    align-items: center;
+}
+
+
+
 .container {
     display: flex;
     width: 340px;
-    height: 350px;
+    height: 355px;
     margin: auto;
     border-radius: 5px;
-    background-color: rgb(148, 187, 190);
+    background-color: #c8d6e5;
 }
 
 h2 {
@@ -34,7 +71,7 @@ form label {
 
 span {
     color: red;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 form input {
@@ -51,10 +88,14 @@ input[type="submit"] {
     height: 35px;
     margin-top: 20px;
     border: none;
-    background-color: #49c1a2;
+    background-color: #54a0ff;
     color: white;
     font-size: 18px;
     cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #1dd1a1;
 }
 
 .item {

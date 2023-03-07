@@ -19,6 +19,7 @@ export class BarraMenuComponent implements OnInit {
   usuarioActual: string = "";
   /**Datos del usuario que esta logueado actualmente */
   usuarioLogueado!: Usuario;
+
   termino: string = '';
   seleccionGenero = 'hombre';
   opciones = [
@@ -99,9 +100,7 @@ export class BarraMenuComponent implements OnInit {
   }
 
   onCerrarSesion() {
-    console.log("estoy en cerrar sesion")
-
-
+    console.log("estoy en cerrar sesion");
     localStorage.removeItem('correo')
     this.estaAutenticado = false;
     this.router.navigate(['/auth/login']);

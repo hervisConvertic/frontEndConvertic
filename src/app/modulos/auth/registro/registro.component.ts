@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { AuthService } from '../../../servicios/auth.service';
 import { Router } from '@angular/router';
 import { TipoDocumentoService } from '../../../servicios/tipo-documento.service';
 import { TipoDocumento } from '../../../interface/tipo-documento';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-registro',
@@ -13,8 +15,6 @@ import { TipoDocumento } from '../../../interface/tipo-documento';
 export class RegistroComponent implements OnInit {
 
   documentos!: TipoDocumento[];
-
-
   miFormularioRegistro!: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
@@ -32,14 +32,21 @@ export class RegistroComponent implements OnInit {
         Validators.required,
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{5,}$/)
       ]),
-      confirmacionContrasena: ['']
-    })
+      confirmacionContrasena: new FormControl('', [
+        Validators.required
+      ])
+    }
+    );
   }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.tipoDocumentoService.getTiposDocumento().subscribe(documentos => this.documentos = documentos)
+    this.tipoDocumentoService.getTiposDocumento().subscribe(documentos => {
+      this.documentos = documentos;
+      this.miFormularioRegistro.controls['tipoDocumento'].setValue(this.documentos[0]);
+    });
+
     const miCorreo = localStorage.getItem('correo');
     console.log("obtniendo correo desde el login: " + miCorreo);
   }
@@ -51,30 +58,26 @@ export class RegistroComponent implements OnInit {
   }
 
   public registro(): void {
-    console.log(this.miFormularioRegistro.controls['contrasena']);
-    //console.log(this.miFormularioRegistro);
+    //console.log(this.miFormularioRegistro.controls['contrasena']);
+    //console.log(this.miFormularioRegistro.controls['confirmacionContrasena']);
+    const contrasena = this.miFormularioRegistro.get('contrasena')?.value;
+    const confirmacionContrasena = this.miFormularioRegistro.get('confirmacionContrasena')?.value;
+
+    if (contrasena !== confirmacionContrasena) {
+      this.miFormularioRegistro.get('confirmacionContrasena')?.setErrors({ 'noCoincideContrasena': true });
+      return;
+    }
+
     if (this.miFormularioRegistro.invalid) {
       this.miFormularioRegistro.markAllAsTouched();
       return;
     }
 
     this.authService.registro(this.miFormularioRegistro.value).subscribe(
-      (response: any) => {
-
-        console.log(response);
-        if (response.status === "success") {
-          console.log('Usuario registrado correctamente');
-          this.router.navigate(['/login'])
-        } else {
-          console.log('Error al iniciar sesion: ' + response.message);
-        }
-      },
-      //error
-      (error) => {
-        console.log('error al iniciar sesion ' + error);
+      usuario => {
+        this.router.navigate(['/barra-menu'])
+        Swal.fire('Nuevo usuario', `Usuario ${usuario.nombre} ${usuario.apellido} creado con exito!`, 'success')
       }
-    );
-    console.log(this.miFormularioRegistro.value);
+    )
   }
-
 }
