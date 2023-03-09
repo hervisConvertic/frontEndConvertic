@@ -1,6 +1,6 @@
 <div>
     <header>
-        <section><img src="../../../assets/logoConvertic.jpg" alt=""></section>
+        <section><img class="img" src="../../../assets/logoConvertic.jpg" alt=""></section>
         <section>
             <form>
                 <select name="tipodocumento" [(ngModel)]="seleccionGenero" (click)="obtenerGenero()">
@@ -9,42 +9,50 @@
                     </option>
                 </select>
             </form>
-
         </section>
         <section class="opciones-header">Home</section>
-        <section class="opciones-header">Patrocinadores</section>
-        <section class="input">
-            <app-barra-busqueda (onEnter)="buscarProducto($event)" (onDebunce)="sugerencias($event)"
-                placeholder="buscar pais"></app-barra-busqueda>
+        <section class="opciones-header">
+            <div class="carrito" routerLink="/carritoCompras">
+                <img src="../../../../assets/cart-add-solid-24.png" alt="" width="50px" height="50px">
+                <p>carrito compras</p>
+            </div>
+        </section>
 
+        <section class="input">
+            <app-barra-busqueda #miHijo (onEnter)="buscarProducto($event)" (onDebunce)="sugerencias($event)"
+                (resetInput)="resetInputBusqueda()"></app-barra-busqueda>
+            <div class="posicion-relativa">
+
+                <div *ngIf="abrirBusqueda" class="lista-desplegable">
+                    <ul>
+                        <li *ngFor="let item of productosSugerido"><a
+                                [routerLink]="['/verProducto',item.id]">{{item.descripcion}} |
+                                {{item.color}} |
+                                {{item.marca.descripcion}}</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+        <section class="opciones-cerrar-sesion">
+            <ng-container *ngIf="estaAutenticado else NoAutenticado">
+                <div class="cerrar-sesion">
+                    <p class="usuario-actual"> {{usuarioActual}}</p>
+                    <div class="cerrar-boton" (click)="onCerrarSesion()">
+                        <img src="../../../../assets/chevron-down-square-solid-24.png" alt="" height="30px"
+                            width="50px">
+                        <p>Cerrar sesion</p>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-template #NoAutenticado>
+                <button (click)="onIniciarSesion()">Iniciar sesión</button>
+            </ng-template>
         </section>
     </header>
 </div>
-<div>
 
-    <ul>
-        <li *ngFor="let item of productosSugerido"><a [routerLink]="['/verProducto',item.id]">{{item.descripcion}} |
-                {{item.color}} |
-                {{item.marca.descripcion}}</a>
-        </li>
-
-        <li>h1 estoy aqui</li>
-    </ul>
-</div>
 <div *ngIf="productosSugerido.length > 0">
     <app-producto-buscado [productoSeleccionado]="productosSugerido"></app-producto-buscado>
 </div>
-
-<br>
-<br>
-<ng-container *ngIf="estaAutenticado else NoAutenticado">
-    <h1>Bienvenido: <span>{{usuarioActual}}</span></h1>
-    <br>
-
-
-    <button (click)="onCerrarSesion()">Cerrar sesion prueba</button>
-</ng-container>
-
-<ng-template #NoAutenticado>
-    <button (click)="onIniciarSesion()">Iniciar sesion prueba</button>
-</ng-template>

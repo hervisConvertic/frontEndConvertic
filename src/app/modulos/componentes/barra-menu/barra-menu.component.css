@@ -12,13 +12,13 @@ body {
 
 header {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     background-color: rgb(148, 187, 190);
     align-items: center;
     justify-items: center;
 }
 
-header section img {
+header section .img {
     margin-top: 4px;
     width: 60px;
     border-color: black;
@@ -26,6 +26,63 @@ header section img {
     animation: rotate 360s linear infinite;
     animation-duration: 160s;
 }
+
+header section .opciones-cerrar-sesion {
+    width: 90%;
+}
+
+header .cerrar-sesion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
+    height: 100%;
+}
+
+header .cerrar-boton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+header .cerrar-boton p {
+    font-size: 16px;
+    font-weight: 100;
+}
+
+header .cerrar-boton:hover {
+    background-color: #c8d6e5;
+}
+
+.usuario-actual {
+    margin-top: 3px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.carrito {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 17px;
+}
+
+.posicion-relativa {
+    position: relative;
+}
+
+.lista-desplegable {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 2;
+    background-color: white;
+    border: 1px solid gray;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 
 @keyframes rotate {
     from {
@@ -76,6 +133,7 @@ header section form select option {
 
 .input {
     display: flex;
+    flex-direction: column;
 }
 
 .example-form {

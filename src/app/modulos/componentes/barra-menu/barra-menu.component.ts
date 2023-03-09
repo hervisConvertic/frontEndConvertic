@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProductoTallaService } from '../../../servicios/producto-talla.service';
 import { ProductoGenero } from '../../../interface/producto-genero';
 import { Producto } from 'src/app/interface/producto';
 import { AuthService } from '../../../servicios/auth.service';
 import { Usuario } from '../../../interface/usuario';
 import { Router } from '@angular/router';
+import { BarraBusquedaComponent } from '../barra-busqueda/barra-busqueda.component';
 
 
 @Component({
@@ -13,11 +14,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./barra-menu.component.css']
 })
 export class BarraMenuComponent implements OnInit {
-  /** Propiedad que indica si hay alguien autenticado */
+
+  @ViewChild('miHijo') barraBusqueda!: BarraBusquedaComponent;
+
+  // variable para desplegar o cerrar la busqueda del input
+  abrirBusqueda = false;
+  // Propiedad que indica si hay alguien autenticado 
   public estaAutenticado: boolean = false;
-  /**nombre del usuario que esta logueado actualmente */
+  // Propiedad que indica si se cambio la busqueda por genero 
+  public buscaPorGenero: boolean = false;
+  //nombre del usuario que esta logueado actualmente 
   usuarioActual: string = "";
-  /**Datos del usuario que esta logueado actualmente */
+  //Datos del usuario que esta logueado actualmente 
   usuarioLogueado!: Usuario;
 
   termino: string = '';
@@ -36,7 +44,6 @@ export class BarraMenuComponent implements OnInit {
   constructor(private productoTallaService: ProductoTallaService,
     private _authService: AuthService,
     private router: Router
-
   ) { }
 
   ngOnInit(): void {
@@ -59,8 +66,9 @@ export class BarraMenuComponent implements OnInit {
 
   public obtenerGenero(): void {
     console.log(this.seleccionGenero);
-
-    this.termino = "";
+    this.abrirBusqueda = false;
+    this.buscaPorGenero = false;
+    this.resetInputBusqueda();
     this.productoTallaService.buscarPorGenero(this.seleccionGenero)
       .subscribe(productos => {
         console.log(productos);
@@ -88,7 +96,11 @@ export class BarraMenuComponent implements OnInit {
 
   sugerencias(termino: string) {
     if (termino == '') {
+      this.buscaPorGenero = false;
+      this.abrirBusqueda = false;
     } else {
+      this.abrirBusqueda = true;
+      this.buscaPorGenero = true;
       this.hayError = false;
       this.productoTallaService.buscarPorItem(this.seleccionGenero, termino)
         .subscribe(
@@ -101,9 +113,9 @@ export class BarraMenuComponent implements OnInit {
 
   onCerrarSesion() {
     console.log("estoy en cerrar sesion");
-    localStorage.removeItem('correo')
-    this.estaAutenticado = false;
-    this.router.navigate(['/auth/login']);
+    // localStorage.removeItem('correo')
+    // this.estaAutenticado = false;
+    // this.router.navigate(['/auth/login']);
 
   }
 
@@ -112,5 +124,7 @@ export class BarraMenuComponent implements OnInit {
     this.router.navigate(['/auth/login']);
   }
 
-
+  resetInputBusqueda() {
+    this.barraBusqueda?.onResetInput()
+  }
 }

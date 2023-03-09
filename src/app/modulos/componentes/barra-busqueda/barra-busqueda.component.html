@@ -1,18 +1,8 @@
-<form (ngSubmit)="buscarProducto()" autocomplete="off">
-    <input type="text" name="termimo" [(ngModel)]="termino" (input)="teclaPresionada()" placeholder="buscar producto">
+<form (ngSubmit)="buscarProducto()" autocomplete="on">
+    <div class="item">
+        <label for="termino">Buscar Producto</label>
+        <input type="text" name="termimo" [(ngModel)]="termino" (input)="teclaPresionada()"
+            placeholder="buscar producto" autocomplete="name">
+    </div>
+
 </form>
-
-
-<!-- 
-<br>
-<div *ngIf="hayError">
-    no se encontro el producto con {{termino}}
-</div>
-<br>
-<div>
-    <ul>
-        <li *ngFor="let item of productosSugerido">
-            {{item.descripcion}}
-        </li>
-    </ul>
-</div> -->

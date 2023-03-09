@@ -13,6 +13,7 @@ export class BarraBusquedaComponent implements OnInit {
 
   @Output() onEnter: EventEmitter<string> = new EventEmitter();
   @Output() onDebunce: EventEmitter<string> = new EventEmitter();
+  @Output() resetInput: EventEmitter<String> = new EventEmitter();
 
   debouncer: Subject<string> = new Subject();
 
@@ -29,6 +30,10 @@ export class BarraBusquedaComponent implements OnInit {
       .subscribe(valor => {
         this.onDebunce.emit(valor);
       });
+  }
+
+  onResetInput() {
+    this.termino = '';
   }
 
   buscarProducto(): void {
