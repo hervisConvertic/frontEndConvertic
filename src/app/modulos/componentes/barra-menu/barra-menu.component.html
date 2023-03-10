@@ -1,6 +1,8 @@
 <div>
     <header>
-        <section><img class="img" src="../../../assets/logoConvertic.jpg" alt=""></section>
+        <section (click)="imagen()" routerLink="/productoBuscado"><img class="img"
+                src="../../../assets/logoConvertic.jpg" alt="">
+        </section>
         <section>
             <form>
                 <select name="tipodocumento" [(ngModel)]="seleccionGenero" (click)="obtenerGenero()">
@@ -10,9 +12,9 @@
                 </select>
             </form>
         </section>
-        <section class="opciones-header">Home</section>
+        <section class="opciones-header" (click)="home()">Home</section>
         <section class="opciones-header">
-            <div class="carrito" routerLink="/carritoCompras">
+            <div class="carrito" routerLink="/carritoCompras" (click)="carrito()">
                 <img src="../../../../assets/cart-add-solid-24.png" alt="" width="50px" height="50px">
                 <p>carrito compras</p>
             </div>
@@ -25,10 +27,11 @@
 
                 <div *ngIf="abrirBusqueda" class="lista-desplegable">
                     <ul>
-                        <li *ngFor="let item of productosSugerido"><a
-                                [routerLink]="['/verProducto',item.id]">{{item.descripcion}} |
+                        <li *ngFor="let item of productosSugerido"><a [routerLink]="['/verProducto',item.id]"
+                                (click)="clickBarra()">{{item.descripcion}} |
                                 {{item.color}} |
                                 {{item.marca.descripcion}}</a>
+
                         </li>
                     </ul>
                 </div>
@@ -53,6 +56,18 @@
     </header>
 </div>
 
-<div *ngIf="productosSugerido.length > 0">
+<!-- <div *ngIf="productosSugerido.length > 0">
     <app-producto-buscado [productoSeleccionado]="productosSugerido"></app-producto-buscado>
+</div> -->
+<div *ngIf="cardGenero">
+    <app-producto-buscado [productoPorGenero]="productos"></app-producto-buscado>
+</div>
+
+
+<div *ngIf="cardGenero">
+    <h1>Estamos en el componente</h1>
+    <h1>Estamos en el componente</h1>
+    <h1>Estamos en el componente</h1>
+    <h1>Estamos en el componente</h1>
+    <h1>Estamos en el componente</h1>
 </div>

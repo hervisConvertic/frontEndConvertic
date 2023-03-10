@@ -6,6 +6,7 @@ import { AuthService } from '../../../servicios/auth.service';
 import { Usuario } from '../../../interface/usuario';
 import { Router } from '@angular/router';
 import { BarraBusquedaComponent } from '../barra-busqueda/barra-busqueda.component';
+import { ProductoService } from '../../../servicios/producto.service';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class BarraMenuComponent implements OnInit {
 
   @ViewChild('miHijo') barraBusqueda!: BarraBusquedaComponent;
 
+  public cardGenero = true;
   // variable para desplegar o cerrar la busqueda del input
   abrirBusqueda = false;
   // Propiedad que indica si hay alguien autenticado 
@@ -36,19 +38,22 @@ export class BarraMenuComponent implements OnInit {
   ];
 
   hayError: boolean = false;
-  productos: ProductoGenero[] = [];
+  //productos: ProductoGenero[] = [];
+  productos: Producto[] = [];
 
   itemProducto: Producto[] = [];
   productosSugerido: Producto[] = [];
 
   constructor(private productoTallaService: ProductoTallaService,
     private _authService: AuthService,
+    private _productoService: ProductoService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+    this.cardGenero = true;
     this.obtenerGenero();
 
     const correoUsuarioActual = localStorage.getItem('correo');
@@ -64,12 +69,34 @@ export class BarraMenuComponent implements OnInit {
     }
   }
 
+  public home(): void {
+    console.log("estoy en home");
+    this.cardGenero = false;
+  }
+  public carrito(): void {
+    console.log("estoy en carrito");
+    this.cardGenero = false;
+  }
+  public imagen(): void {
+    console.log("estoy en imagen");
+    this.cardGenero = true;
+  }
+  public clickBarra(): void {
+    this.cardGenero = false;
+  }
+
+
   public obtenerGenero(): void {
     console.log(this.seleccionGenero);
     this.abrirBusqueda = false;
     this.buscaPorGenero = false;
     this.resetInputBusqueda();
-    this.productoTallaService.buscarPorGenero(this.seleccionGenero)
+    // this.productoTallaService.buscarPorGenero(this.seleccionGenero)
+    //   .subscribe(productos => {
+    //     console.log(productos);
+    //     this.productos = productos;
+
+    this._productoService.obtenerProductoPorGenero(this.seleccionGenero)
       .subscribe(productos => {
         console.log(productos);
         this.productos = productos;

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BarraMenuComponent } from './barra-menu/barra-menu.component';
+//import { BarraMenuComponent } from './barra-menu/barra-menu.component';
 import { RouterModule } from '@angular/router';
 import { ComponentesRuta } from './componentes.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BarraBusquedaComponent } from './barra-busqueda/barra-busqueda.component';
+//import { BarraBusquedaComponent } from './barra-busqueda/barra-busqueda.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -14,14 +14,15 @@ import { ProductosMasBuscadosComponent } from './productos-mas-buscados/producto
 import { CarritoCompraComponent } from './carrito-compra/carrito-compra.component';
 import { FormularioConfirmacionComponent } from './formulario-confirmacion/formulario-confirmacion.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
 @NgModule({
   declarations: [
-    BarraMenuComponent,
-    BarraBusquedaComponent,
-    ProductoBuscadoComponent,
+    //BarraMenuComponent,
+    // BarraBusquedaComponent,
+    //ProductoBuscadoComponent,
     VerProductoComponent,
     ProductosMasBuscadosComponent,
     CarritoCompraComponent,
@@ -35,7 +36,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatAutocompleteModule,
     MatFormFieldModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    FontAwesomeModule
   ]
 })
 export class ComponenteModule { }

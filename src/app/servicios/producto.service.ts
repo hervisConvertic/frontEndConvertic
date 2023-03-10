@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ProductoService {
   private urlEndPoint: string = 'http://localhost:8080/producto';
+  private urlEndPointGenero: string = 'http://localhost:8080/producto/genero';
   private httpHeaders = new HttpHeaders({ 'Content-type': 'application/json' });
 
   constructor(private http: HttpClient) { }
@@ -19,5 +20,10 @@ export class ProductoService {
 
   verProductosMasBuscados(): Observable<Producto[]> {
     return this.http.get<Producto[]>(this.urlEndPoint);
+  }
+
+  obtenerProductoPorGenero(genero: string): Observable<Producto[]> {
+    const url = `${this.urlEndPointGenero}/${genero}`
+    return this.http.get<Producto[]>(url);
   }
 }

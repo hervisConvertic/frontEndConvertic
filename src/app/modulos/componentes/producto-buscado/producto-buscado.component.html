@@ -1,13 +1,30 @@
 <div class="container" *ngFor="let item of productoSeleccionado">
     <div class="content-section">
         <div class="card">
-            <h1>imagen <small>{{item.imagen}}</small></h1>
+            <img [src]="'assets/productosHombre/'+item.imagen" alt="{{item.imagen}}">
             <h1>producto: <small>{{item.descripcion}}</small></h1>
             <p>Lorem ipsum dolor sit amet consectetur, adipi. Error </p>
             <h2>color: <small>{{item.color}}</small></h2>
             <h3>precio: <small>{{item.precio | number}}</small></h3>
             <h4>marca: <small>{{item.marca.descripcion}}</small></h4>
             <button>comprar</button>
+        </div>
+    </div>
+</div>
+<div class="genero">
+    <div class="" *ngFor="let item of productoPorGenero">
+        <div class="container-card">
+            <div class="card">
+                <h2>{{item.descripcion}}</h2>
+                <figure>
+                    <img [src]="'assets/productosHombre/'+item.imagen" alt="{{item.imagen}}">
+                </figure>
+                <div class="contenido-card">
+                    <h4>marca: <small>{{item.marca.descripcion}}</small></h4>
+                </div>
+                <a [routerLink]="['/verProducto',item.id]">seleccionar producto</a>
+
+            </div>
         </div>
     </div>
 </div>

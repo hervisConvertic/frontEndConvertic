@@ -1,16 +1,23 @@
 <p>productos-mas-buscados works!</p>
-<div class="container" *ngFor="let item of producto">
-    <div class="content-section">
-        <div class="card">
-            <h1>imagen <small>{{item.imagen}}</small></h1>
-            <h1>producto: <small>{{item.descripcion}}</small></h1>
-            <p>Lorem ipsum dolor sit amet consectetur, adipi. Error </p>
-            <h2>color: <small>{{item.color}}</small></h2>
-            <h3>precio: <small>{{item.precio | number}}</small></h3>
-            <h4>marca: <small>{{item.marca.descripcion}}</small></h4>
-            <h4>Busquedas <small>{{item.busqueda}}</small></h4>
-            <p>estoy en la seccion de productos mas buscados</p>
-            <button>comprar</button>
+<div class="cards">
+    <div class="" *ngFor="let item of producto; index as i">
+        <div class="container">
+            <img [src]="'assets/productosHombre/'+item.imagen" alt="{{item.imagen}}">
+            <h4><i class="fa-solid fa-thumbs-up liked"
+                    [ngStyle]="{'color': coloresBotones[secuencia[i]]}"></i>{{item.busqueda}}
+            </h4>
+            <h3>{{item.descripcion}}</h3>
+            <p>{{item.marca.descripcion}}</p>
+            <h6>{{item.precio | number}}</h6>
+            <ul class="stars">
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star checked "></i></li>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star checked"></i></li>
+            </ul>
+            <button class="boton" *ngIf="producto && secuencia.length > i"
+                [ngStyle]="{'background-color': coloresBotones[secuencia[i]]}">Ver producto</button>
         </div>
     </div>
 </div>

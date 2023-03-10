@@ -10,6 +10,7 @@ import { Producto } from 'src/app/interface/producto';
 export class ProductoBuscadoComponent implements OnInit {
 
   @Input() productoSeleccionado: Producto[] = [];
+  @Input() productoPorGenero: Producto[] = [];
 
   constructor() { }
 
