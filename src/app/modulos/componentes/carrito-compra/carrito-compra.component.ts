@@ -57,12 +57,6 @@ export class CarritoCompraComponent implements OnInit {
       })
   }
 
-
-  // Para actualizar la cantidad de un producto al carrito
-  actualizarProducto(item: any) {
-
-  }
-
   // para eliminar productos del carrito
   eliminarProducto(carrito: CarritoCompra) {
 

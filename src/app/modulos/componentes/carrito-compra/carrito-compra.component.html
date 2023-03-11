@@ -1,48 +1,51 @@
-<div>
-    <h2>Carrito de compras</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Imagen</th>
-                <th>Producto</th>
-                <th>Precio</th>
-                <th>Cantidad</th>
-                <th>Total</th>
-                <th>Eliminar</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Lista de productos en el carrito -->
-            <tr *ngFor="let item of productoCarrito">
-                <td>
-                    <!-- <img [src]="item.productoTalla.producto.imagen" [alt]="item.productoTalla.producto.imagen"
-                        width="50" height="50"> -->
-                    <h2>{{item.productoTalla.producto.imagen}}</h2>
-                </td>
-                <td>{{ item.productoTalla.producto.descripcion }}</td>
-                <td>{{ item.productoTalla.producto.precio }}</td>
-                <td>
-                    <input type="number" min="1" [(ngModel)]="item.cantidad" (change)="actualizarProducto(item)">
-                </td>
-                <td>{{ item.productoTalla.producto.precio * item.cantidad }}</td>
-                <td>
-                    <button (click)="eliminarProducto(item)">Eliminar</button>
-                </td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="4"><strong>Total</strong></td>
-                <td>{{ obtenerTotal() }}</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td colspan="6">
-                    <!-- <button (click)="realizarCompra()"
+<h1>Carrito de <small>compras</small> </h1>
+<div class="container">
+    <div class="carrito">
+        <table>
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Valor</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Lista de productos en el carrito -->
+                <tr *ngFor="let item of productoCarrito">
+                    <td>
+                        <img [src]="'assets/productosHombre/'+item.productoTalla.producto.imagen"
+                            alt="{{item.productoTalla.producto.imagen}}">
+
+                    </td>
+                    <td>{{ item.productoTalla.producto.descripcion }}</td>
+                    <td>{{ item.productoTalla.producto.precio | number }}</td>
+                    <td>
+                        {{item.cantidad}}
+                    </td>
+                    <td>{{ (item.productoTalla.producto.precio * item.cantidad) | number }}</td>
+                    <td (click)="eliminarProducto(item)">
+                        <i class="fa-solid fa-trash-can eliminar-carrito"></i>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr class="subtotal">
+                    <td class="total"><strong>Total:</strong></td>
+                    <td class="total">{{ obtenerTotal() | number }}</td>
+
+                </tr>
+                <tr class="comprar">
+                    <td>
+                        <button mat-button (click)="realizarCompra()">realizar compra</button>
+                        <!-- <button (click)="realizarCompra()"
                         [disabled]="productoCarrito.length === 0 || !productoCarrito">Realizar Compra</button> -->
-                </td>
-            </tr>
-        </tfoot>
-    </table>
+                    </td>
+                </tr>
+            </tfoot>
+
+        </table>
+    </div>
 </div>
-<button mat-button (click)="realizarCompra()">realizar compra</button>

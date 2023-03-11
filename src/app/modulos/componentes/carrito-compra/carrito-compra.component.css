@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+small {
+    color: #00FF7F;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.carrito {
+    margin-top: 10px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    background: #F0FFF0;
+}
+
+th {
+    font-size: 20px;
+    color: #696969;
+}
+
+tr {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+    margin: 5px;
+    box-sizing: border-box;
+    float: left;
+    border-radius: 5px;
+    padding-top: 5px;
+    cursor: pointer;
+}
+
+td img {
+    width: 100%;
+    height: 50px;
+}
+
+td {
+    font-size: 18px;
+    color: #2F4F4F;
+    font-weight: bold;
+}
+
+.comprar {
+    display: flex;
+    justify-content: flex-end;
+}
+
+button {
+    margin-right: 20px;
+    border-radius: 5px;
+    padding: 5px;
+    border-color: #696969;
+    color: #696969;
+    font-size: 15px;
+    font-weight: bold;
+
+    background: #7CFC00;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #00FF00;
+}
+
+.subtotal {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.subtotal .total {
+    margin-left: 50px;
+    margin-right: 45px;
+    color: #696969;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.compra {
+    display: flex;
+}
+
+.eliminar-carrito {
+    font-size: 32px;
+    color: #DC143C;
+}
