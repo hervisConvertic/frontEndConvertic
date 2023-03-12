@@ -12,9 +12,7 @@ import { CarritoCompra } from '../../../interface/carrito-compra';
 import { NuevoProductoCarrito } from '../../../interface/nuevo-producto-carrito';
 import { AuthService } from '../../../servicios/auth.service';
 import { Usuario } from '../../../interface/usuario';
-
-
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ver-producto',
@@ -25,30 +23,12 @@ export class VerProductoComponent implements OnInit {
 
   @Output() onTallaServicio: EventEmitter<ProductoTalla[]> = new EventEmitter;
 
-
-  //carrito compras
-
-  //probando
-  productoCantidad!: CarritoCompra;
-
-
-
+  public coloresBotones = ["#00FF7F", "#DAA520", "#4169E1", "#9932CC"];
 
   productoTallaSeleccionado!: ProductoTalla;
-  //probando generar un arreglo para ingresar al carrito
-
-  // itemCarrito: ProductoTalla[] = [];
-  // itemCantidad: Cantidad[] = [];
-
-  carritoCompra!: CarritoCompra;
-
-  itemCarrito!: ProductoTalla;
-
-  id_producto_talla: number = 0;
   //cantidad ingresada
   cantidad: number = 0;
 
-  productoTalla!: ProductoTalla;
   producto!: Producto;
   actualizarProducto!: Producto;
   tallas!: Talla[];
@@ -115,7 +95,12 @@ export class VerProductoComponent implements OnInit {
     });
   }
 
+  //enviar producto al carrito
   enviarProducto(): void {
+    if (this.cantidad <= 0) {
+
+      return;
+    }
     if (this.productoTallaSeleccionado.stock >= this.cantidad) {
 
       let usuario = { usuario: this.usuarioLogueado }
@@ -135,11 +120,23 @@ export class VerProductoComponent implements OnInit {
       this._carritoCompraService.registrarProducto(objetoCombinado)
         .subscribe(result => {
           console.log(result);
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'El producto se ha enviado al carrito de compras',
+            showConfirmButton: false,
+            timer: 1500
+          })
         });
 
-
     } else {
-      console.log("la cantidad ingresada no esta disponible");
+      Swal.fire(
+        'Lo sentimos!',
+        // 'La cantidad solicitada no esta disponible.',
+        `La cantidad solicitada no esta disponible, solo tenemos ${this.productoTallaSeleccionado.stock} ${this.producto.descripcion}s en el inventario.`,
+        'warning'
+      )
+      console.log("la cantidad ingresada no esta disponible en el inventario");
     }
 
   }

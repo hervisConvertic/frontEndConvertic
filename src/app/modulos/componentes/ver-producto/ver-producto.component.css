@@ -1,10 +1,10 @@
-* {
+/* * {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
 }
 
-.container {
+.container1 {
     width: 100%;
     min-height: 100vh;
     background-color: #f7f7f7;
@@ -74,4 +74,207 @@ content-section .card img {
     .content-section {
         flex-direction: column;
     }
+} */
+
+/* empezando de nuevo el css */
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* background: linear-gradient(180deg, #4ba9e9, #4ba9e9 50%,
+            #fff 50%, #fff 100%); */
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    width: 300px;
+    height: 380px;
+    background-color: #fff;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    transition: 0.5s ease-in-out;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.card:hover {
+    width: 600px;
+}
+
+.card .imgBox {
+    position: relative;
+    min-width: 300px;
+    width: 300px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+}
+
+.card:hover .imgBox {
+    transform: rotate(-35deg);
+}
+
+.card .imgBox img {
+    width: 85%;
+}
+
+.card .detalle {
+    position: relative;
+    min-width: 300px;
+    background: #FF6347;
+    /* background: #3CB371; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    color: #fff;
+}
+
+.card .detalle::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-bottom: 10px solid transparent;
+    border-top: 10px solid transparent;
+    border-left: 10px solid #fff;
+}
+
+.card .detalle .titulo {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.card .detalle .color-genero-inventario {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+}
+
+/* .card .detalle h4 {
+    font-size: 0.9em;
+} */
+
+.card .detalle .descripcion p {
+    font-size: 0.8em;
+    font-weight: 200;
+}
+
+.card .detalle .talla-cantidad {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+
+}
+
+.card .detalle .talla-cantidad .talla {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3px;
+}
+
+.card .detalle .talla-cantidad .formulario {
+    display: flex;
+    flex-direction: column;
+    padding: 3px;
+    align-items: center;
+    margin-top: 3px;
+}
+
+.card .detalle .talla-cantidad .precio-talla {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3px;
+}
+
+.card .detalle .talla-cantidad .precio-talla p {
+    margin-top: 13px;
+}
+
+.card .detalle .talla-cantidad form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+
+}
+
+label {
+    font-size: 12px;
+}
+
+input {
+    width: 73%;
+    border-radius: 5px;
+    padding: 3px;
+    border-color: #708090;
+    height: 30px;
+}
+
+select {
+    width: 90px;
+    border-radius: 5px;
+    padding: 3px;
+    border-color: #708090;
+    height: 30px;
+    margin-top: -1px;
+}
+
+button {
+    width: 90%;
+    height: 30px;
+    padding: 3px;
+    border-radius: 7px;
+    font-size: 13px;
+    border-color: #708090;
+    margin-top: 7px;
+    background: #ADD8E6;
+}
+
+button:hover {
+    background: #00BFFF;
+}
+
+.liked {
+    margin-right: 7px;
+    color: #1E90FF;
+}
+
+small {
+    font-size: 12px;
+}
+
+h3 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+p {
+    font-size: 18px;
+    font-weight: bold;
 }
