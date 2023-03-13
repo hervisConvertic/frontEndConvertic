@@ -53,17 +53,17 @@
                 <div class="titulo">
                     <div>
                         <h3><small>marca: </small>{{producto.marca.descripcion}}</h3>
-                        <h3>{{producto.descripcion}}</h3>
+                        <h3>{{producto.nombre}}</h3>
                     </div>
                     <div>
                         <h3><i class="fa-solid fa-thumbs-up liked "></i>{{producto.busqueda}}</h3>
                     </div>
                 </div>
                 <div class="color-genero-inventario">
-                    <p><small>color: </small>{{producto.color}} </p>
+                    <p><small>color: </small>{{producto.color.descripcion}} </p>
                     <p>{{producto.genero.descripcion}}</p>
                     <div *ngIf="productoTallaSeleccionado">
-                        <h4><small>inventario:</small> {{productoTallaSeleccionado.stock}}</h4>
+                        <h4><small>inventario:</small> {{productoTallaSeleccionado.inventario}}</h4>
                     </div>
                 </div>
                 <div class="descripcion">

@@ -3,7 +3,7 @@ import { Producto } from './producto-genero';
 
 export interface ProductoTalla {
     id: number;
-    stock: number;
+    inventario: number;
     talla: Talla;
     producto: Producto;
 } 

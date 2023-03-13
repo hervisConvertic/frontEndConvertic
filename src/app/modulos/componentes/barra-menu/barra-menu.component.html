@@ -29,7 +29,7 @@
                     <ul>
                         <li *ngFor="let item of productosSugerido"><a [routerLink]="['/verProducto',item.id]"
                                 (click)="clickBarra()">{{item.descripcion}} |
-                                {{item.color}} |
+                                {{item.color.descripcion}} |
                                 {{item.marca.descripcion}}</a>
 
                         </li>

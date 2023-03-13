@@ -89,6 +89,7 @@ export class CarritoCompraComponent implements OnInit {
     })
   }
 
+
   // para obtener el total de la compra
   obtenerTotal() {
     let total = 0;
@@ -111,6 +112,8 @@ export class CarritoCompraComponent implements OnInit {
       console.log(`Dialogo result: ${result}`);
 
     });
+    let totalCompra = this.obtenerTotal();
+    console.log(totalCompra);
   }
 
 }

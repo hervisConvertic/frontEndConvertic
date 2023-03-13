@@ -101,7 +101,7 @@ export class VerProductoComponent implements OnInit {
 
       return;
     }
-    if (this.productoTallaSeleccionado.stock >= this.cantidad) {
+    if (this.productoTallaSeleccionado.inventario >= this.cantidad) {
 
       let usuario = { usuario: this.usuarioLogueado }
       console.log(usuario);
@@ -133,7 +133,7 @@ export class VerProductoComponent implements OnInit {
       Swal.fire(
         'Lo sentimos!',
         // 'La cantidad solicitada no esta disponible.',
-        `La cantidad solicitada no esta disponible, solo tenemos ${this.productoTallaSeleccionado.stock} ${this.producto.descripcion}s en el inventario.`,
+        `La cantidad solicitada no esta disponible, solo tenemos ${this.productoTallaSeleccionado.inventario} ${this.producto.descripcion}s en el inventario.`,
         'warning'
       )
       console.log("la cantidad ingresada no esta disponible en el inventario");
