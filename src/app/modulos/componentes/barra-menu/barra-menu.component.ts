@@ -33,8 +33,8 @@ export class BarraMenuComponent implements OnInit {
   termino: string = '';
   seleccionGenero = 'hombre';
   opciones = [
-    { genero: 'Ropa de Hombre', value: 'hombre' },
-    { genero: 'Ropa de Mujer', value: 'mujer' }
+    { genero: 'Hombre', value: 'hombre' },
+    { genero: 'Mujer', value: 'mujer' }
   ];
 
   hayError: boolean = false;
@@ -69,32 +69,24 @@ export class BarraMenuComponent implements OnInit {
     }
   }
 
-  public home(): void {
-    console.log("estoy en home");
-    this.cardGenero = false;
-  }
-  public carrito(): void {
-    console.log("estoy en carrito");
-    this.cardGenero = false;
-  }
-  public imagen(): void {
-    console.log("estoy en imagen");
+  public irHome(): void {
+    console.log("cardGenero en true")
     this.cardGenero = true;
   }
-  public clickBarra(): void {
+  public cerrarHome(): void {
+    console.log("cardGenero en false")
     this.cardGenero = false;
   }
 
+  public onCerrarHome(cerrarCard: boolean) {
+    this.cardGenero = cerrarCard;
+  }
 
   public obtenerGenero(): void {
     console.log(this.seleccionGenero);
     this.abrirBusqueda = false;
     this.buscaPorGenero = false;
     this.resetInputBusqueda();
-    // this.productoTallaService.buscarPorGenero(this.seleccionGenero)
-    //   .subscribe(productos => {
-    //     console.log(productos);
-    //     this.productos = productos;
 
     this._productoService.obtenerProductoPorGenero(this.seleccionGenero)
       .subscribe(productos => {
@@ -151,7 +143,14 @@ export class BarraMenuComponent implements OnInit {
     this.router.navigate(['/auth/login']);
   }
 
+  public resetInput() {
+    console.log("estoy en reset input");
+    this.resetInputBusqueda();
+    this.abrirBusqueda = false;
+  }
+
   resetInputBusqueda() {
+    console.log("ingreso aqui en reset input");
     this.barraBusqueda?.onResetInput()
   }
 }

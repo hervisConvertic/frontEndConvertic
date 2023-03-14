@@ -15,6 +15,7 @@ import { CarritoCompraComponent } from './carrito-compra/carrito-compra.componen
 import { FormularioConfirmacionComponent } from './formulario-confirmacion/formulario-confirmacion.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { VerImagenComponent } from './ver-imagen/ver-imagen.component';
 
 
 
@@ -26,7 +27,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     VerProductoComponent,
     ProductosMasBuscadosComponent,
     CarritoCompraComponent,
-    FormularioConfirmacionComponent
+    FormularioConfirmacionComponent,
+    VerImagenComponent
   ],
   imports: [
     CommonModule,

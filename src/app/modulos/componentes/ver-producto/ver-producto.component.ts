@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap, tap } from 'rxjs/operators';
 import { ProductoTallaService } from '../../../servicios/producto-talla.service';
 import { CarritoCompraService } from '../../../servicios/carrito-compra.service';
@@ -41,7 +41,8 @@ export class VerProductoComponent implements OnInit {
     private _productoService: ProductoService,
     private _tallaService: TallaService,
     private _carritoCompraService: CarritoCompraService,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -128,6 +129,7 @@ export class VerProductoComponent implements OnInit {
             timer: 1500
           })
         });
+      this.router.navigate(['/imagenFondo'])
 
     } else {
       Swal.fire(

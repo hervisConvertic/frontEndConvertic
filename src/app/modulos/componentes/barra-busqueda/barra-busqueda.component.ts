@@ -38,12 +38,9 @@ export class BarraBusquedaComponent implements OnInit {
 
   buscarProducto(): void {
     this.onEnter.emit(this.termino);
-
   }
   teclaPresionada() {
     this.debouncer.next(this.termino);
-    console.log("estoy en tecla presionada")
-
   }
 }
 

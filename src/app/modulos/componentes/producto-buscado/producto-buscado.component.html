@@ -22,7 +22,8 @@
                 <div class="contenido-card">
                     <h4>marca: <small>{{item.marca.descripcion}}</small></h4>
                 </div>
-                <a [routerLink]="['/verProducto',item.id]">seleccionar producto</a>
+
+                <button [routerLink]="['/verProducto',item.id]" (click)="cerrarHome()">Ver producto</button>
 
             </div>
         </div>

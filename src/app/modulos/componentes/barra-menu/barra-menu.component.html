@@ -1,8 +1,9 @@
 <div>
     <header>
-        <section (click)="imagen()" routerLink="/productoBuscado"><img class="img"
+        <section (click)="irHome()" routerLink="/productoBuscado"><img class="img"
                 src="../../../assets/logoConvertic.jpg" alt="">
         </section>
+
         <section>
             <form>
                 <select name="tipodocumento" [(ngModel)]="seleccionGenero" (click)="obtenerGenero()">
@@ -12,13 +13,18 @@
                 </select>
             </form>
         </section>
-        <section class="opciones-header" (click)="home()">Home</section>
+        <section class="opciones-header" (click)="irHome()" routerLink="/productoBuscado">
+            <p>Home</p>
+        </section>
+        <section class="opciones-header" (click)="cerrarHome()" routerLink="/verProductosMasBuscados">
+            <p>Más buscados</p>
+        </section>
         <section class="opciones-header">
-            <div class="carrito" routerLink="/carritoCompras" (click)="carrito()">
-                <img src="../../../../assets/cart-add-solid-24.png" alt="" width="50px" height="50px">
-                <p>carrito compras</p>
+            <div routerLink="/carritoCompras" (click)="cerrarHome()">
+                <p><i class="fa-solid fa-cart-shopping carrito"></i></p>
             </div>
         </section>
+
 
         <section class="input">
             <app-barra-busqueda #miHijo (onEnter)="buscarProducto($event)" (onDebunce)="sugerencias($event)"
@@ -28,25 +34,23 @@
                 <div *ngIf="abrirBusqueda" class="lista-desplegable">
                     <ul>
                         <li *ngFor="let item of productosSugerido"><a [routerLink]="['/verProducto',item.id]"
-                                (click)="clickBarra()">{{item.descripcion}} |
+                                (click)="cerrarHome()" (click)="resetInput()">{{item.descripcion}} |
                                 {{item.color.descripcion}} |
                                 {{item.marca.descripcion}}</a>
 
                         </li>
                     </ul>
                 </div>
-
             </div>
+        </section>
+        <section>
+            <p class="usuario-actual"> {{usuarioActual}}</p>
         </section>
         <section class="opciones-cerrar-sesion">
             <ng-container *ngIf="estaAutenticado else NoAutenticado">
-                <div class="cerrar-sesion">
-                    <p class="usuario-actual"> {{usuarioActual}}</p>
-                    <div class="cerrar-boton" (click)="onCerrarSesion()">
-                        <img src="../../../../assets/chevron-down-square-solid-24.png" alt="" height="30px"
-                            width="50px">
-                        <p>Cerrar sesion</p>
-                    </div>
+                <div class="cerrar-boton" (click)="onCerrarSesion()">
+                    <i class="fa-solid fa-outdent cerrar"></i>
+                    <p>Cerrar sesión</p>
                 </div>
             </ng-container>
             <ng-template #NoAutenticado>
@@ -56,18 +60,6 @@
     </header>
 </div>
 
-<!-- <div *ngIf="productosSugerido.length > 0">
-    <app-producto-buscado [productoSeleccionado]="productosSugerido"></app-producto-buscado>
-</div> -->
 <div *ngIf="cardGenero">
-    <app-producto-buscado [productoPorGenero]="productos"></app-producto-buscado>
-</div>
-
-
-<div *ngIf="cardGenero">
-    <h1>Estamos en el componente</h1>
-    <h1>Estamos en el componente</h1>
-    <h1>Estamos en el componente</h1>
-    <h1>Estamos en el componente</h1>
-    <h1>Estamos en el componente</h1>
+    <app-producto-buscado (onCerrarHome)="onCerrarHome($event)" [productoPorGenero]="productos"></app-producto-buscado>
 </div>

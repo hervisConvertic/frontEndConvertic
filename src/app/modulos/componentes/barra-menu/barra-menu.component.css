@@ -12,8 +12,8 @@ body {
 
 header {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    background-color: rgb(148, 187, 190);
+    grid-template-columns: 10% 10% 10% 10% 10% auto 10% 10%;
+    background: #F0FFF0;
     align-items: center;
     justify-items: center;
 }
@@ -25,18 +25,11 @@ header section .img {
     border-radius: 50%;
     animation: rotate 360s linear infinite;
     animation-duration: 160s;
+    cursor: pointer;
 }
 
 header section .opciones-cerrar-sesion {
     width: 90%;
-}
-
-header .cerrar-sesion {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100px;
-    height: 100%;
 }
 
 header .cerrar-boton {
@@ -47,9 +40,8 @@ header .cerrar-boton {
     cursor: pointer;
 }
 
-header .cerrar-boton p {
-    font-size: 16px;
-    font-weight: 100;
+header section p {
+    font-size: 14px;
 }
 
 header .cerrar-boton:hover {
@@ -60,13 +52,6 @@ header .cerrar-boton:hover {
     margin-top: 3px;
     font-size: 17px;
     font-weight: bold;
-}
-
-.carrito {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 17px;
 }
 
 .posicion-relativa {
@@ -95,27 +80,39 @@ header .cerrar-boton:hover {
 }
 
 header section form select {
-    width: 100%;
-    height: 60px;
+    width: 90px;
+    height: 60%;
     padding: 5px;
     border-radius: 5px;
-    border-color: wheat;
-    background-color: #e67e22;
+    border-color: #2F4F4F;
+    background-color: #FFFFFF;
     cursor: pointer;
-    color: white;
-    font-size: 20px;
+    color: #2F4F4F;
+    font-size: 14px;
 }
+
+/* header section form select:focus {
+    background-color: #00FF7F;
+    color: #333;
+    border: 1px solid #ccc;
+} */
 
 header section form select:hover {
-    background-color: #27ae60;
+    background-color: #F5F5F5;
 }
 
-header section form select option {
+/* header section form select option {
     margin-top: 10px;
     font-size: 16px;
-    background-color: #27ae60;
-    color: whitesmoke;
+    background-color: #FFFFFF;
+    color: #2F4F4F;
+} */
+
+header section form select option:checked {
+    background-color: #2F4F4F;
+
 }
+
 
 .opciones-header {
     color: #2c3e50;
@@ -142,7 +139,7 @@ header section form select option {
     width: 95%;
     height: 55px;
     border-radius: 5px;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 .example-full-width {
@@ -152,4 +149,9 @@ header section form select option {
 
 .input-busqueda {
     color: yellow;
+}
+
+.carrito,
+.cerrar {
+    font-size: 22px;
 }

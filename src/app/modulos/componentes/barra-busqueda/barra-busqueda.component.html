@@ -1,8 +1,6 @@
 <form (ngSubmit)="buscarProducto()" autocomplete="on">
-    <div class="item">
-        <label for="termino">Buscar Producto</label>
+    <div>
         <input type="text" name="termimo" [(ngModel)]="termino" (input)="teclaPresionada()"
             placeholder="buscar producto" autocomplete="name">
     </div>
-
 </form>

@@ -17,7 +17,8 @@
                 <li><i class="fa fa-star checked"></i></li>
             </ul>
             <button class="boton" *ngIf="producto && secuencia.length > i"
-                [ngStyle]="{'background-color': coloresBotones[secuencia[i]]}">Ver producto</button>
+                [ngStyle]="{'background-color': coloresBotones[secuencia[i]]}"
+                [routerLink]="['/verProducto',item.id]">Ver producto</button>
         </div>
     </div>
 </div>
