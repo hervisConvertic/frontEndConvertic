@@ -34,7 +34,7 @@
                 <div *ngIf="abrirBusqueda" class="lista-desplegable">
                     <ul>
                         <li *ngFor="let item of productosSugerido"><a [routerLink]="['/verProducto',item.id]"
-                                (click)="cerrarHome()" (click)="resetInput()">{{item.descripcion}} |
+                                (click)="cerrarHome()" (click)="resetInput()">{{item.nombre}} |
                                 {{item.color.descripcion}} |
                                 {{item.marca.descripcion}}</a>
 

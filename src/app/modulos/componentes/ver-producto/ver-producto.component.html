@@ -56,19 +56,20 @@
                         <h3>{{producto.nombre}}</h3>
                     </div>
                     <div>
-                        <h3><i class="fa-solid fa-thumbs-up liked "></i>{{producto.busqueda}}</h3>
+                        <h3 class="busqueda"><i class="fa-solid fa-thumbs-up liked "></i>{{producto.busqueda}}</h3>
                     </div>
                 </div>
                 <div class="color-genero-inventario">
-                    <p><small>color: </small>{{producto.color.descripcion}} </p>
+                    <p class="p-color-stock"><small class="color-stock">color: </small>{{producto.color.descripcion}}
+                    </p>
                     <p>{{producto.genero.descripcion}}</p>
                     <div *ngIf="productoTallaSeleccionado">
-                        <h4><small>inventario:</small> {{productoTallaSeleccionado.inventario}}</h4>
+                        <p class="p-color-stock"><small class="color-stock">stock:</small>
+                            {{productoTallaSeleccionado.inventario}}</p>
                     </div>
                 </div>
                 <div class="descripcion">
-                    <p><small>descripcion: </small> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus
-                        magnam quod </p>
+                    <p><small>descripcion: </small>{{producto.descripcion}} </p>
                 </div>
                 <div class="talla-cantidad">
                     <div class="precio-talla">
