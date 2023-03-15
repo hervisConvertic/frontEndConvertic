@@ -7,6 +7,17 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+.ver-producto {
+    color: #00FF7F;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+h1 {
+    margin-top: 10px;
+    text-align: center;
+}
+
 .container {
     display: flex;
     justify-content: center;
@@ -164,7 +175,8 @@ button {
     font-size: 13px;
     border-color: #708090;
     margin-top: 7px;
-    background: #ADD8E6;
+    background: #00FF7F;
+    color: #fff;
 }
 
 button:hover {

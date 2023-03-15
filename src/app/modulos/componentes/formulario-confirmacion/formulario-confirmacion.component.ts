@@ -8,6 +8,8 @@ import { AuthService } from '../../../servicios/auth.service';
 import { Usuario } from '../../../interface/usuario';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { CarritoCompraService } from '../../../servicios/carrito-compra.service';
+import { concat } from 'rxjs';
 
 
 
@@ -31,6 +33,7 @@ export class FormularioConfirmacionComponent implements OnInit {
   constructor(private _ciudadService: CiudadService,
     private _datosEnvioVentaService: DatosEnvioVentaService,
     private _authService: AuthService,
+    private _carritoCompraService: CarritoCompraService,
     public dialogRef: MatDialogRef<FormularioConfirmacionComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: FormBuilder,
@@ -88,6 +91,16 @@ export class FormularioConfirmacionComponent implements OnInit {
       //       console.log(result);
       //     }
       //   );
+
+      concat(
+        this._carritoCompraService.actualizarInventarioPorCompraUsuario(
+          this.usuarioLogueado.id),
+        this._carritoCompraService.eliminarCarritoPorIdUsuario(
+          this.usuarioLogueado.id)
+      ).subscribe(result => {
+        console.log(result);
+      })
+
       Swal.fire({
         title: 'Gracias por su compra, hemos enviado un correo electrónico con los detalles de su compra',
         showClass: {

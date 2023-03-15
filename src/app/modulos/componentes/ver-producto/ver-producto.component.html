@@ -1,49 +1,11 @@
-<!-- <div *ngIf="!producto; else divProducto">
-    Por favor espere...
-</div>
-
-<ng-template #divProducto>
-    <div class="container1">
-        <div class="content-section">
-            <div class="card">
-                <h1>imagen <small>{{producto.imagen}}</small></h1>
-                <h2>Categoria: <small>{{producto.genero.descripcion}}</small></h2>
-                <h1>producto: <small>{{producto.descripcion}}</small></h1>
-                <p>Lorem ipsum dolor sit amet consectetur, adipi. Error </p>
-                <h2>color: <small>{{producto.color}}</small></h2>
-                <h3>precio: <small>{{producto.precio| number}}</small></h3>
-                <h4>marca: <small>{{producto.marca.descripcion}}</small></h4>
-                <div *ngIf="productoTallaSeleccionado">
-                    <h4>cantidad disponible: <small>{{productoTallaSeleccionado.stock}}</small></h4>
-                </div>
-
-                <div>
-                    <label for="talla">Talla: </label>
-                    <select name="" id="talla" [(ngModel)]="tallaSeleccionada" (change)="actualizarTalla()">
-                        <option *ngFor="let talla of tallas" [ngValue]="talla">{{talla.descripcion}}</option>
-                    </select>
-                </div>
-                <form (ngSubmit)="enviarProducto()" autocomplete="off">
-                    <div>
-                        <label for="cantidad">Cantidad</label>
-                        <input type="number" name="cantidad" id="cantidad" [(ngModel)]="cantidad"
-                            placeholder="ingrese cantidad">
-                    </div>
-
-                    <button>comprar</button>
-                </form>
-            </div>
-        </div>
-
-    </div>
-
-</ng-template> -->
-
 <div *ngIf="!producto; else divProducto">
     Por favor espere...
 </div>
 
 <ng-template #divProducto>
+
+    <h1>Sesión detalle de <small class="ver-producto">producto</small> </h1>
+
     <div class="container">
         <div class="card">
             <div class="imgBox">

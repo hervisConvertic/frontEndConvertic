@@ -11,7 +11,7 @@
 
 .titulo {
     font-size: 24px;
-    color: #54a0ff;
+    color: #00FF7F;
     font-weight: bold;
 }
 
@@ -77,7 +77,7 @@ form .medio-formulario .item select {
 }
 
 form .medio-formulario .item button {
-    background-color: #54a0ff;
+    background-color: #00FF7F;
     color: white;
     width: 93%;
     padding: 7px;
