@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { ProductoTallaService } from '../../../servicios/producto-talla.service';
 import { ProductoGenero } from '../../../interface/producto-genero';
 import { Producto } from 'src/app/interface/producto';
@@ -15,7 +15,6 @@ import { ProductoService } from '../../../servicios/producto.service';
   styleUrls: ['./barra-menu.component.css']
 })
 export class BarraMenuComponent implements OnInit {
-
   @ViewChild('miHijo') barraBusqueda!: BarraBusquedaComponent;
 
   public cardGenero = true;
@@ -30,6 +29,7 @@ export class BarraMenuComponent implements OnInit {
   //Datos del usuario que esta logueado actualmente 
   usuarioLogueado!: Usuario;
 
+  generoActual: string = '';
   termino: string = '';
   seleccionGenero = 'hombre';
   opciones = [
@@ -53,6 +53,7 @@ export class BarraMenuComponent implements OnInit {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+
     this.cardGenero = true;
     this.obtenerGenero();
 
@@ -83,7 +84,7 @@ export class BarraMenuComponent implements OnInit {
   }
 
   public obtenerGenero(): void {
-    console.log(this.seleccionGenero);
+    this.generoActual = this.seleccionGenero;
     this.abrirBusqueda = false;
     this.buscaPorGenero = false;
     this.resetInputBusqueda();
@@ -101,6 +102,7 @@ export class BarraMenuComponent implements OnInit {
   buscarProducto(termino: string) {
     this.hayError = false;
     this.termino = termino;
+    console.log("el genero es: " + this.seleccionGenero)
 
     this.productoTallaService.buscarPorItem(this.seleccionGenero, termino)
       .subscribe((item) => {
@@ -131,10 +133,9 @@ export class BarraMenuComponent implements OnInit {
   }
 
   onCerrarSesion() {
-    console.log("estoy en cerrar sesion");
-    // localStorage.removeItem('correo')
-    // this.estaAutenticado = false;
-    // this.router.navigate(['/auth/login']);
+    localStorage.removeItem('correo')
+    this.estaAutenticado = false;
+    this.router.navigate(['/auth/login']);
 
   }
 

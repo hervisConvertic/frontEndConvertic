@@ -27,7 +27,7 @@ export class VerProductoComponent implements OnInit {
 
   productoTallaSeleccionado!: ProductoTalla;
   //cantidad ingresada
-  cantidad: number = 0;
+  cantidad: number = 1;
 
   producto!: Producto;
   actualizarProducto!: Producto;

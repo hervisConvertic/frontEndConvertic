@@ -32,7 +32,7 @@
 
                     <div class="item">
                         <label for="contrasena">Contraseña</label>
-                        <input type="text" name="contrasena" id="contrasena" formControlName="contrasena"
+                        <input type="password" name="contrasena" id="contrasena" formControlName="contrasena"
                             placeholder="Ingrese contraseña ">
                         <span *ngIf="campoRegistroEsValido('contrasena','required')">
                             campo contraseña es obligatorio
@@ -43,7 +43,7 @@
                     </div>
                     <div class="item">
                         <label for="confirmacionContrasena">Confirmación contraseña</label>
-                        <input type="text" name="confirmacionContrasena" id="confirmacionContrasena"
+                        <input type="password" name="confirmacionContrasena" id="confirmacionContrasena"
                             formControlName="confirmacionContrasena" placeholder="Ingrese contraseña">
                         <span *ngIf="campoRegistroEsValido('confirmacionContrasena','required')">
                             confirmacion obligatoria

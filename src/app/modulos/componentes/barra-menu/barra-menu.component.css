@@ -91,22 +91,15 @@ header section form select {
     font-size: 14px;
 }
 
-/* header section form select:focus {
+header section form select:focus {
     background-color: #00FF7F;
     color: #333;
     border: 1px solid #ccc;
-} */
+}
 
 header section form select:hover {
     background-color: #F5F5F5;
 }
-
-/* header section form select option {
-    margin-top: 10px;
-    font-size: 16px;
-    background-color: #FFFFFF;
-    color: #2F4F4F;
-} */
 
 header section form select option:checked {
     background-color: #2F4F4F;

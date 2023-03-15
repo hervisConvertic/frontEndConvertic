@@ -61,5 +61,6 @@
 </div>
 
 <div *ngIf="cardGenero">
-    <app-producto-buscado (onCerrarHome)="onCerrarHome($event)" [productoPorGenero]="productos"></app-producto-buscado>
+    <app-producto-buscado (onCerrarHome)="onCerrarHome($event)" [productoPorGenero]="productos"
+        [genero]="generoActual"></app-producto-buscado>
 </div>

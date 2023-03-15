@@ -10,17 +10,17 @@ import { Producto } from 'src/app/interface/producto';
 export class ProductoBuscadoComponent implements OnInit {
 
   @Output() onCerrarHome: EventEmitter<boolean> = new EventEmitter();
+  @Output() onEventoGenro: EventEmitter<string> = new EventEmitter();
   @Input() productoSeleccionado: Producto[] = [];
   @Input() productoPorGenero: Producto[] = [];
-
-  public cardGenero = true;
+  @Input() genero!: String;
+  public cardGenero = false;
 
   constructor() { }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-
   }
 
   public cerrarHome(): void {

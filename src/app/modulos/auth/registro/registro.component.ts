@@ -75,9 +75,10 @@ export class RegistroComponent implements OnInit {
 
     this.authService.registro(this.miFormularioRegistro.value).subscribe(
       usuario => {
-        this.router.navigate(['/barra-menu'])
+        this.router.navigate(['/auth/login'])
         Swal.fire('Nuevo usuario', `Usuario ${usuario.nombre} ${usuario.apellido} creado con exito!`, 'success')
       }
-    )
+    );
+    this.miFormularioRegistro.reset();
   }
 }

@@ -85,7 +85,7 @@
                             <div class="formulario">
                                 <label for="cantidad">Cantidad</label>
                                 <input type="number" name="cantidad" id="cantidad" [(ngModel)]="cantidad"
-                                    placeholder="ingrese cantidad">
+                                    placeholder="ingrese cantidad" onkeypress="return event.charcode >=48" min="1">
                             </div>
 
                             <button>Enviar al carrito</button>

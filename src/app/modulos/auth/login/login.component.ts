@@ -45,11 +45,11 @@ export class LoginComponent {
         if (emailMatch !== null) {
           localStorage.setItem('correo', emailMatch[0]);
         }
-        this.router.navigate(['/barra-menu'])
+        this.router.navigate(['/productoBuscado'])
         Swal.fire('Login usuario', `Usuario ${response.correo} logueado con exito!`, 'success')
       }
     );
     console.log(this.miFormularioLogin.value);
-    //this.miFormularioLogin.reset();
+    this.miFormularioLogin.reset();
   }
 }

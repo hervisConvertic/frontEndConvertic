@@ -7,6 +7,7 @@ import { DatosEnvioVentaService } from '../../../servicios/datos-envio-venta.ser
 import { AuthService } from '../../../servicios/auth.service';
 import { Usuario } from '../../../interface/usuario';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 
 
@@ -32,7 +33,8 @@ export class FormularioConfirmacionComponent implements OnInit {
     private _authService: AuthService,
     public dialogRef: MatDialogRef<FormularioConfirmacionComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -80,14 +82,14 @@ export class FormularioConfirmacionComponent implements OnInit {
       this.miFormularioEmergente.value.usuario = this.usuarioLogueado;
       console.log(this.miFormularioEmergente.value);
 
-      this._datosEnvioVentaService.registrarDatosEnvioVenta(
-        this.miFormularioEmergente.value).subscribe(
-          result => {
-            console.log(result);
-          }
-        );
+      // this._datosEnvioVentaService.registrarDatosEnvioVenta(
+      //   this.miFormularioEmergente.value).subscribe(
+      //     result => {
+      //       console.log(result);
+      //     }
+      //   );
       Swal.fire({
-        title: 'Gracias por su compra, hemos enviado un correo electronico con los detalles de envio',
+        title: 'Gracias por su compra, hemos enviado un correo electrónico con los detalles de su compra',
         showClass: {
           popup: 'animate__animated animate__fadeInDown'
         },
@@ -95,9 +97,9 @@ export class FormularioConfirmacionComponent implements OnInit {
           popup: 'animate__animated animate__fadeOutUp'
 
         }
-
       })
       console.log("saliendo de la compra");
+      this.router.navigate(['/imagenFondo'])
     }
   }
   onNoClick() {
